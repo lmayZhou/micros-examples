@@ -15,9 +15,15 @@ Microservice Examples (微服务示例)
 
 #### 使用说明
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1. keytool生成秘钥
+```shell
+# 生成秘钥
+keytool -genkeypair -alias ms-service-oauth -keyalg RSA -keypass ms-oauth -keystore ms-service-oauth.jks -storepass ms-oauth
+
+# 查看公钥/私钥
+# http://slproweb.com/products/Win32OpenSSL.html
+keytool -list -rfc --keystore ms-service-oauth.jks | openssl x509 -inform pem -pubkey
+```
 
 #### 参与贡献
 
