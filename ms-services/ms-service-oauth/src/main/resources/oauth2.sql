@@ -3,7 +3,7 @@ create table oauth_client_details (
   client_id VARCHAR(256) PRIMARY KEY, -- 客户端应用的账号
   resource_ids VARCHAR(256),		-- 客户端应用可访问的资源服务器列表,(空代表所有资源服务器都可以访问)
   client_secret VARCHAR(256),	-- 客户端应用的密码
-  scope VARCHAR(256),	-- 资源服务器拥有的所有权限列表 (get add delete update)  
+  scope VARCHAR(256),	-- 资源服务器拥有的所有权限列表 (get add delete update)
   authorized_grant_types VARCHAR(256), -- 客户端支持的授权码模式列表
   web_server_redirect_uri VARCHAR(256), -- 授权码模式,申请授权码后重定向的uri.
   authorities VARCHAR(256),
@@ -52,5 +52,4 @@ create table oauth_approvals (
 	lastModifiedAt DATETIME
 );
 
- 
- INSERT INTO oauth_client_details    (client_id, client_secret, scope, authorized_grant_types,    web_server_redirect_uri, authorities, access_token_validity,    refresh_token_validity, additional_information, autoapprove)VALUES    ('user-client', '$2a$10$o2l5kA7z.Caekp72h5kU7uqdTDrlamLq.57M1F6ulJln9tRtOJufq', 'all',    'authorization_code,refresh_token,password', null, null, 3600, 36000, null, true);
+INSERT INTO oauth_client_details(`client_id`, `resource_ids`, `client_secret`, `scope`, `authorized_grant_types`, `web_server_redirect_uri`, `authorities`, `access_token_validity`, `refresh_token_validity`, `additional_information`, `autoapprove`) VALUES ('user-client', NULL, '$2a$10$Qg.q5o1ZBVy/7TrV107u6ORr1Vyl.wm8AGU5tFcbpw2zPQuuxh82C', 'all', 'authorization_code,refresh_token,password', NULL, NULL, 3600, 36000, NULL, '1');

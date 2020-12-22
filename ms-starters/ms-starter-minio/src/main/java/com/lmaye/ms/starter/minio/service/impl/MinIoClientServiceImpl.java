@@ -13,6 +13,9 @@ import java.util.Objects;
  * @since Email: lmay_zlm@meten.com
  */
 public class MinIoClientServiceImpl implements IMinIoClientService {
+    /**
+     * Minio Client
+     */
     private MinioClient minIoClient;
 
     /**
