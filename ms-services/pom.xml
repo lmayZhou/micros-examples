@@ -122,6 +122,34 @@
                 <version>0.0.1-SNAPSHOT</version>
                 <scope>provided</scope>
             </dependency>
+            <!-- Microservice Redis Starter -->
+            <dependency>
+                <groupId>com.lmaye</groupId>
+                <artifactId>ms-starter-redis</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+                <scope>provided</scope>
+            </dependency>
+            <!-- Microservice JWT Starter -->
+            <dependency>
+                <groupId>com.lmaye</groupId>
+                <artifactId>ms-starter-jwt</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+                <scope>provided</scope>
+            </dependency>
+            <!-- Microservice RabbitMQ Starter -->
+            <dependency>
+                <groupId>com.lmaye</groupId>
+                <artifactId>ms-starter-rabbitmq</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+                <scope>provided</scope>
+            </dependency>
+            <!-- Microservice Elasticsearch Starter -->
+            <dependency>
+                <groupId>com.lmaye</groupId>
+                <artifactId>ms-starter-elasticsearch</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+                <scope>provided</scope>
+            </dependency>
             <!-- Spring Cloud 版本系列 -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>

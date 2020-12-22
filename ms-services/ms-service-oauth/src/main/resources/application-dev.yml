@@ -1,4 +1,9 @@
 spring:
+  # 指定security用户信息
+#  security:
+#    user:
+#      name: admin
+#      password: admin
   # 数据库配置
   datasource:
     name: sys
@@ -23,6 +28,21 @@ spring:
 #        server-addr: 192.168.0.10:8848
         namespace: a6b8fdfd-14b4-4264-94fc-9d41b92a7035
 #        namespace: 7fbd94b1-686e-4270-b148-d50e4b2ce64c
+  # Redis
+  redis:
+    host: 192.168.30.180
+    port: 6379
+    database: 1
+    password: 123456
+    timeout: 100ms
+    jedis:
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: -1ms
+        min-idle: 0
+  session:
+    store-type: redis
 
 # 日志
 logging:

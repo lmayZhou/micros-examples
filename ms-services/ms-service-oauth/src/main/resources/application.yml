@@ -5,7 +5,7 @@ server:
 # Spring 配置
 spring:
   application:
-    name: service-oauth
+    name: oauth2-service
   servlet:
     multipart:
       max-file-size: 10MB
