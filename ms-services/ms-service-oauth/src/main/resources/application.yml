@@ -1,8 +1,8 @@
-# 服务端口
+# 鏈嶅姟绔彛
 server:
   port: 8081
 
-# Spring 配置
+# Spring 閰嶇疆
 spring:
   application:
     name: service-oauth
@@ -13,11 +13,11 @@ spring:
   profiles:
     active: dev
 
-# Swagger 配置
+# Swagger 閰嶇疆
 swagger:
   enabled: true
-  title: Microservice 授权认证服务-在线接口文档
-  description: Microservice 授权认证服务-在线接口文档
+  title: Microservice 鐢ㄦ埛鎺堟潈璁よ瘉-鍦ㄧ嚎鎺ュ彛鏂囨。
+  description: Microservice 鐢ㄦ埛鎺堟潈璁よ瘉-鍦ㄧ嚎鎺ュ彛鏂囨。
   version: 1.0.1
   termsOfServiceUrl: https://www.lmaye.com
   basePackage: com.lmaye.ms.service.oauth.controller
@@ -27,7 +27,7 @@ swagger:
     name: lmay Zhou
     url: https://www.lmaye.com
   globalOperationParameters:
-    - description: 凭证
+    - description: 鍑瘉
       modelRef: string
       name: Authorization
       parameterType: header
