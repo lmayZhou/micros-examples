@@ -1,9 +1,4 @@
 spring:
-  # 指定security用户信息
-#  security:
-#    user:
-#      name: admin
-#      password: admin
   # 数据库配置
   datasource:
     name: sys
@@ -41,8 +36,23 @@ spring:
         max-idle: 8
         max-wait: -1ms
         min-idle: 0
-  session:
-    store-type: redis
+#  session:
+#    store-type: redis
+
+# Token存储到Redis
+auth:
+  ttl: 3600
+  clientId: ms-oauth
+  clientSecret: ms-oauth
+  cookieDomain: localhost
+  cookieMaxAge: -1
+
+encrypt:
+  key-store:
+    location: classpath:/ms-service-oauth.jks
+    secret: ms-oauth
+    alias: ms-service-oauth
+    password: ms-oauth
 
 # 日志
 logging:

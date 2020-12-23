@@ -33,9 +33,9 @@ public class OauthUserDetailsServiceImpl implements UserDetailsService {
         users.add(new User("lmay", password, AuthorityUtils.commaSeparatedStringToAuthorityList("admin")));
         users.add(new User("andy", password, AuthorityUtils.commaSeparatedStringToAuthorityList("client")));
         users.add(new User("mark", password, AuthorityUtils.commaSeparatedStringToAuthorityList("client")));
-        List<User> findUserList = users.stream().filter(user -> user.getUsername().equals(username)).collect(Collectors.toList());
-        if (!CollectionUtils.isEmpty(findUserList)) {
-            return findUserList.get(0);
+        List<User> userList = users.stream().filter(user -> user.getUsername().equals(username)).collect(Collectors.toList());
+        if (!CollectionUtils.isEmpty(userList)) {
+            return userList.get(0);
         } else {
             throw new UsernameNotFoundException("用户名或密码错误");
         }

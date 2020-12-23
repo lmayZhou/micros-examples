@@ -1,11 +1,12 @@
 package com.lmaye.ms.service.oauth.config;
 
-import com.lmaye.ms.service.oauth.entity.CustomTokenEnhancer;
 import com.lmaye.ms.service.oauth.service.OauthUserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.bootstrap.encrypt.KeyProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -16,8 +17,11 @@ import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
+import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
 
+import javax.annotation.Resource;
 import javax.sql.DataSource;
+import java.security.KeyPair;
 import java.util.Arrays;
 
 /**
@@ -31,15 +35,29 @@ import java.util.Arrays;
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
-
+    /**
+     * 授权认证管理器
+     */
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    /**
+     * SpringSecurity 用户自定义授权认证类
+     */
     @Autowired
     private OauthUserDetailsServiceImpl userDetailsService;
 
+    /**
+     * 数据源
+     */
     @Autowired
     private DataSource dataSource;
+
+    /**
+     * 密钥的配置
+     */
+    @Resource(name = "keyProperties")
+    private KeyProperties keyProperties;
 
     /**
      * 更改存储token的策略，默认是内存策略,修改为jwt
@@ -54,12 +72,30 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         return new JwtTokenStore(jwtAccessTokenConverter());
     }
 
+    /**
+     * 读取密钥的配置
+     *
+     * @return KeyProperties
+     */
+    @Bean("keyProperties")
+    public KeyProperties keyProperties(){
+        return new KeyProperties();
+    }
+
+    /**
+     * JWT令牌转换器
+     *
+     * @return JwtAccessTokenConverter
+     */
     @Bean
     public JwtAccessTokenConverter jwtAccessTokenConverter() {
         // jwt使用这个key来签名，验证token的服务也使用这个key来验签
-        JwtAccessTokenConverter jat = new JwtAccessTokenConverter();
-        jat.setSigningKey("123456");
-        return jat;
+        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+        KeyPair keyPair = new KeyStoreKeyFactory(keyProperties.getKeyStore().getLocation(),
+                keyProperties.getKeyStore().getSecret().toCharArray())
+                .getKeyPair(keyProperties.getKeyStore().getAlias(), keyProperties.getKeyStore().getPassword().toCharArray());
+        converter.setKeyPair(keyPair);
+        return converter;
     }
 
     /**
@@ -112,6 +148,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         /*security.checkTokenAccess("isAuthenticated()")
                 // 认证中心往外面暴露的一个用来获取jwt的SigningKey的服务/oauth/token_key,但我选择在每个资源服务器本地配置SigningKey
                 .tokenKeyAccess("isAuthenticated()");*/
+        security.allowFormAuthenticationForClients().passwordEncoder(new BCryptPasswordEncoder())
+                .tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
     }
 
     /**
@@ -125,10 +163,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         // 将增强的token设置到增强链中
         TokenEnhancerChain enhancerChain = new TokenEnhancerChain();
         enhancerChain.setTokenEnhancers(Arrays.asList(customTokenEnhancer(), jwtAccessTokenConverter()));
-        endpoints.tokenStore(tokenStore())
-                .authenticationManager(authenticationManager)
-                //刷新token的请求会用用到
-                .userDetailsService(userDetailsService)
-                .tokenEnhancer(enhancerChain);
+        endpoints.tokenStore(tokenStore()).authenticationManager(authenticationManager)
+                .userDetailsService(userDetailsService).tokenEnhancer(enhancerChain);
     }
 }

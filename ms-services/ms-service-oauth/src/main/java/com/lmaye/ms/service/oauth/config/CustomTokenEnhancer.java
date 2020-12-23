@@ -1,4 +1,4 @@
-package com.lmaye.ms.service.oauth.entity;
+package com.lmaye.ms.service.oauth.config;
 
 import com.lmaye.ms.service.oauth.vo.UserTokenVo;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
@@ -22,14 +22,14 @@ public class CustomTokenEnhancer implements TokenEnhancer {
         // 这个UserTokenVo就是之前UserDetail返回的对象
         //从那获取要增强携带的字段
 //        UserTokenVo user = (UserTokenVo) authentication.getPrincipal();
-        Map<String, Object> additionalInfo = new HashMap<>(2);
+        Map<String, Object> info = new HashMap<>(2);
         //添加token携带的字段
-        additionalInfo.put("id", "10000");
-        additionalInfo.put("nickname", "Lmay");
-        additionalInfo.put("description", "www.lmaye.com");
+        info.put("id", "10000");
+        info.put("nickname", "Lmay");
+        info.put("description", "www.lmaye.com");
         DefaultOAuth2AccessToken token = (DefaultOAuth2AccessToken) accessToken;
-        token.setAdditionalInformation(additionalInfo);
-        ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(additionalInfo);
+        token.setAdditionalInformation(info);
+        ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(info);
         return accessToken;
     }
 }
