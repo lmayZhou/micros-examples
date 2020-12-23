@@ -26,6 +26,7 @@ spring:
   # Redis
   redis:
     host: 192.168.30.180
+#    host: 192.168.0.10
     port: 6379
     database: 1
     password: 123456
@@ -49,9 +50,13 @@ auth:
 
 encrypt:
   key-store:
+    # 证书路径
     location: classpath:/ms-service-oauth.jks
+    # 秘钥
     secret: ms-oauth
+    # 别名
     alias: ms-service-oauth
+    # 证书密码
     password: ms-oauth
 
 # 日志
