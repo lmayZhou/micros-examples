@@ -161,9 +161,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         // 将增强的token设置到增强链中
-        TokenEnhancerChain enhancerChain = new TokenEnhancerChain();
-        enhancerChain.setTokenEnhancers(Arrays.asList(customTokenEnhancer(), jwtAccessTokenConverter()));
+        TokenEnhancerChain chain = new TokenEnhancerChain();
+        chain.setTokenEnhancers(Arrays.asList(customTokenEnhancer(), jwtAccessTokenConverter()));
         endpoints.tokenStore(tokenStore()).authenticationManager(authenticationManager)
-                .userDetailsService(userDetailsService).tokenEnhancer(enhancerChain);
+                .userDetailsService(userDetailsService).tokenEnhancer(chain);
     }
 }

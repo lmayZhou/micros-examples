@@ -1,6 +1,6 @@
 package com.lmaye.ms.service.oauth.service;
 
-import com.lmaye.ms.service.oauth.vo.UserToken;
+import com.lmaye.ms.service.oauth.entity.UserToken;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -33,6 +33,9 @@ public class OauthUserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private ClientDetailsService clientDetailsService;
 
+    /**
+     * 密码加密
+     */
     @Autowired
     private PasswordEncoder passwordEncoder;
 

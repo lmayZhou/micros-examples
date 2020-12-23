@@ -3,6 +3,8 @@ package com.lmaye.ms.service.oauth;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.client.RestTemplate;
 
 /**
  * -- Ms Service Oauth Application
@@ -16,5 +18,10 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 public class OauthServiceApplication {
     public static void main(String[] args) {
         SpringApplication.run(OauthServiceApplication.class, args);
+    }
+
+    @Bean(name = "restTemplate")
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
     }
 }
