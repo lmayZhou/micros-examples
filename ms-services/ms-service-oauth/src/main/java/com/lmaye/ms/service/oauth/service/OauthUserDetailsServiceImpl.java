@@ -52,9 +52,10 @@ public class OauthUserDetailsServiceImpl implements UserDetailsService {
             if (!Objects.isNull(clientDetails)) {
                 //秘钥
                 String clientSecret = clientDetails.getClientSecret();
-                return new User(username, clientSecret, AuthorityUtils.commaSeparatedStringToAuthorityList(""));
+                return new User(username, clientSecret, clientDetails.getAuthorities());
             }
         }
+        // TODO 查数据库
         String password = passwordEncoder.encode("123456");
         List<UserToken> users = new ArrayList<>();
         users.add(new UserToken("lmay", password, AuthorityUtils.commaSeparatedStringToAuthorityList("admin"), 10000L, "Lmay Zhou", "", "1"));

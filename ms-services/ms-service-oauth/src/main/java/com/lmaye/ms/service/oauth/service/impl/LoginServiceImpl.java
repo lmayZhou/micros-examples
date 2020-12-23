@@ -32,10 +32,10 @@ public class LoginServiceImpl implements LoginService {
         //参数 : 微服务的名称spring.appplication指定的名称
         ServiceInstance choose = loadBalancerClient.choose("oauth2-service");
         String url = choose.getUri().toString() + "/oauth/token";
-        //2.定义头信息 (有client id 和client secr)
+        //2.定义头信息 (有client id 和client Secret)
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
         headers.add("Authorization", "Basic " + Base64.getEncoder().encodeToString((clientId + ":" + clientSecret).getBytes()));
-        //3. 定义请求体  有授权模式 用户的名称 和密码
+        //3. 定义请求体  有授权模式 用户的名称和密码
         MultiValueMap<String, String> formData = new LinkedMultiValueMap<>();
         formData.add("grant_type", grandType);
         formData.add("username", username);
