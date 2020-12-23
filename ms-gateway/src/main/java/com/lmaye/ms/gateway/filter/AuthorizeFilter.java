@@ -42,7 +42,8 @@ public class AuthorizeFilter implements GlobalFilter, Ordered {
             //4.2 从cookie中中获取令牌数据
             HttpCookie first = request.getCookies().getFirst(AUTHORIZE_TOKEN);
             if (first != null) {
-                token = first.getValue();//就是令牌的数据
+                // 就是令牌的数据
+                token = first.getValue();
             }
         }
         if (StringUtils.isEmpty(token)) {
@@ -50,8 +51,8 @@ public class AuthorizeFilter implements GlobalFilter, Ordered {
             token = request.getQueryParams().getFirst(AUTHORIZE_TOKEN);
         }
         if (StringUtils.isEmpty(token)) {
-            //4.4. 如果没有数据    没有登录,要重定向到登录到页面
-            response.setStatusCode(HttpStatus.SEE_OTHER);//303 302
+            //4.4. 如果没有数据没有登录,要重定向到登录到页面(303 302)
+            response.setStatusCode(HttpStatus.SEE_OTHER);
             //location 指定的就是路径
             response.getHeaders().set("Location", OAUTH_LOGIN + "?From=" + request.getURI().toString());
             return response.setComplete();
