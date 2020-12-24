@@ -55,12 +55,12 @@ public class OauthUserDetailsServiceImpl implements UserDetailsService {
                 return new User(username, clientSecret, clientDetails.getAuthorities());
             }
         }
-        // TODO 查数据库
+        // TODO 查数据库, 密码错误3次开启验证码
         String password = passwordEncoder.encode("123456");
         List<UserToken> users = new ArrayList<>();
-        users.add(new UserToken("lmay", password, AuthorityUtils.commaSeparatedStringToAuthorityList("admin"), 10000L, "Lmay Zhou", "", "1"));
-        users.add(new UserToken("andy", password, AuthorityUtils.commaSeparatedStringToAuthorityList("client"), 10001L, "Andy", "", "2"));
-        users.add(new UserToken("mark", password, AuthorityUtils.commaSeparatedStringToAuthorityList("client"), 10002L, "Mark", "", "3"));
+        users.add(new UserToken("lmay", password, AuthorityUtils.commaSeparatedStringToAuthorityList("admin"), 10000L, "Lmay Zhou", true));
+        users.add(new UserToken("andy", password, AuthorityUtils.commaSeparatedStringToAuthorityList("client"), 10001L, "Andy", false));
+        users.add(new UserToken("mark", password, AuthorityUtils.commaSeparatedStringToAuthorityList("client"), 10002L, "Mark", true));
         List<User> userList = users.stream().filter(user -> user.getUsername().equals(username)).collect(Collectors.toList());
         if (!CollectionUtils.isEmpty(userList)) {
             return userList.get(0);

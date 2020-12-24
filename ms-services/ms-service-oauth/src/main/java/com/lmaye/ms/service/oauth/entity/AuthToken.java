@@ -1,37 +1,52 @@
 package com.lmaye.ms.service.oauth.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+import lombok.experimental.Accessors;
+
 import java.io.Serializable;
 
-public class AuthToken implements Serializable{
+/**
+ * -- Auth Token
+ *
+ * @author lmay.Zhou
+ * @date 2020/12/22 18:51
+ * @email lmay@lmaye.com
+ */
+@Data
+@Accessors(chain = true)
+@ApiModel(value = "AuthToken", description = "认证Token")
+public class AuthToken implements Serializable {
+    private static final long serialVersionUID = 1L;
 
-    //令牌信息
-    String accessToken;
-    //刷新token(refresh_token)
-    String refreshToken;
-    //jwt短令牌
-    String jti;
+    /**
+     * 令牌信息
+     */
+    @ApiModelProperty("令牌信息")
+    private String accessToken;
 
-    public String getAccessToken() {
-        return accessToken;
-    }
+    /**
+     * 刷新token
+     */
+    @ApiModelProperty("刷新Token")
+    private String refreshToken;
 
-    public void setAccessToken(String accessToken) {
-        this.accessToken = accessToken;
-    }
+    /**
+     * JWT短令牌
+     */
+    @ApiModelProperty("JWT短令牌")
+    private String jti;
 
-    public String getRefreshToken() {
-        return refreshToken;
-    }
+    /**
+     * 过期时间
+     */
+    @ApiModelProperty("过期时间")
+    private Integer expiresIn;
 
-    public void setRefreshToken(String refreshToken) {
-        this.refreshToken = refreshToken;
-    }
-
-    public String getJti() {
-        return jti;
-    }
-
-    public void setJti(String jti) {
-        this.jti = jti;
-    }
+    /**
+     * 启用验证码
+     */
+    @ApiModelProperty("启用验证码")
+    private Boolean verifyEnable;
 }

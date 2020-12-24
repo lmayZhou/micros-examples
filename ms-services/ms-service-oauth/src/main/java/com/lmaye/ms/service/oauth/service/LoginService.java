@@ -1,16 +1,25 @@
 package com.lmaye.ms.service.oauth.service;
 
+import com.lmaye.ms.service.oauth.dto.LoginDTO;
 import com.lmaye.ms.service.oauth.entity.AuthToken;
 
+/**
+ * -- Login Service
+ *
+ * @author lmay.Zhou
+ * @date 2020/12/24 10:11
+ * @email lmay@lmaye.com
+ */
 public interface LoginService {
     /**
-     * 模拟用户的行为 发送请求 申请令牌 返回
-     * @param username
-     * @param password
-     * @param clientId
-     * @param clientSecret
-     * @param grandType
-     * @return
+     * 用户登录
+     * - 密码授权模式
+     *
+     * @param dto          LoginDTO
+     * @param clientId     clientId
+     * @param clientSecret clientSecret
+     * @param grandType    grandType
+     * @return AuthToken
      */
-    AuthToken login(String username, String password, String clientId, String clientSecret, String grandType);
+    AuthToken login(LoginDTO dto, String clientId, String clientSecret, String grandType);
 }
