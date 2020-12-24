@@ -50,12 +50,12 @@ public class ResultVO<T> implements Serializable {
 
     public ResultVO(IResultCode resultCode) {
         this.code = resultCode.getCode();
-        this.msg = resultCode.getPropKey();
+        this.msg = resultCode.getDesc();
     }
 
     public ResultVO(IResultCode resultCode, T data) {
         this.code = resultCode.getCode();
-        this.msg = resultCode.getPropKey();
+        this.msg = resultCode.getDesc();
         this.data = data;
     }
 

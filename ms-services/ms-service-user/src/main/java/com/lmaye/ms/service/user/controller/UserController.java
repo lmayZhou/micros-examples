@@ -26,8 +26,8 @@ public class UserController {
      *
      * @return Mono<ResponseResult<String>>
      */
-    @GetMapping("/test")
-    @PreAuthorize(value = "hasAuthority('admin')")
+    @GetMapping("/query")
+//    @PreAuthorize(value = "hasAuthority('admin')")
     @ApiOperation(value = "测试接口", notes = "测试示例", response = ResultVO.class)
     public Mono<ResultVO<String>> test() {
         return Mono.just(ResultVO.success("Test"));

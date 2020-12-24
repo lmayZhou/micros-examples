@@ -89,6 +89,7 @@ public class LoginServiceImpl implements LoginService {
         authToken.setRefreshToken(body.getString("refresh_token"));
         authToken.setExpiresIn(body.getInteger("expires_in"));
         authToken.setVerifyEnable(body.getBoolean("verifyEnable"));
+        authToken.setTokenType(body.getString("token_type"));
         // 设置到cookie中
         saveCookie(authToken.getAccessToken());
         return authToken;
