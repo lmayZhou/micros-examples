@@ -1,7 +1,7 @@
 package com.lmaye.ms.service.user.service;
 
 import com.lmaye.ms.services.api.user.entity.SysUser;
-import com.baomidou.mybatisplus.extension.service.IService;
+import com.lmaye.ms.starter.mybatis.service.IMyBatisService;
 
 /**
  * <p>
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author Lmay Zhou
  * @since 2020-12-25
  */
-public interface ISysUserService extends IService<SysUser> {
+public interface ISysUserService extends IMyBatisService<SysUser, Long> {
 
 }

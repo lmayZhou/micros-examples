@@ -1,9 +1,9 @@
 package com.lmaye.ms.service.user.service.impl;
 
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.lmaye.ms.service.user.mapper.SysRoleMapper;
+import com.lmaye.ms.service.user.repository.SysRoleRepository;
 import com.lmaye.ms.service.user.service.ISysRoleService;
 import com.lmaye.ms.services.api.user.entity.SysRole;
+import com.lmaye.ms.starter.mybatis.service.impl.MyBatisServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2020-12-25
  */
 @Service
-public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> implements ISysRoleService {
+public class SysRoleServiceImpl extends MyBatisServiceImpl<SysRoleRepository, SysRole, Long> implements ISysRoleService {
 
 }

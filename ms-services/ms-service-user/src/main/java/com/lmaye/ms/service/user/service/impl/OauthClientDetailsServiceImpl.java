@@ -1,9 +1,9 @@
 package com.lmaye.ms.service.user.service.impl;
 
-import com.lmaye.ms.services.api.user.entity.OauthClientDetails;
-import com.lmaye.ms.service.user.mapper.OauthClientDetailsMapper;
+import com.lmaye.ms.service.user.repository.OauthClientDetailsRepository;
 import com.lmaye.ms.service.user.service.IOauthClientDetailsService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.lmaye.ms.services.api.user.entity.OauthClientDetails;
+import com.lmaye.ms.starter.mybatis.service.impl.MyBatisServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
  * @since 2020-12-25
  */
 @Service
-public class OauthClientDetailsServiceImpl extends ServiceImpl<OauthClientDetailsMapper, OauthClientDetails> implements IOauthClientDetailsService {
+public class OauthClientDetailsServiceImpl extends MyBatisServiceImpl<OauthClientDetailsRepository, OauthClientDetails, Long>
+        implements IOauthClientDetailsService {
 
 }
