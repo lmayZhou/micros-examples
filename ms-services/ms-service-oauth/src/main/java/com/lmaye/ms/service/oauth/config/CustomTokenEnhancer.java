@@ -25,7 +25,6 @@ public class CustomTokenEnhancer implements TokenEnhancer {
         // 添加token携带的字段
         information.put("id", user.getId());
         information.put("nickname", user.getUsername());
-        information.put("verifyEnable", user.getVerifyEnable());
         DefaultOAuth2AccessToken token = (DefaultOAuth2AccessToken) accessToken;
         token.setAdditionalInformation(information);
         ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(information);

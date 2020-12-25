@@ -63,36 +63,40 @@ public class LoginServiceImpl implements LoginService {
      */
     @Override
     public AuthToken login(LoginDTO dto, String clientId, String clientSecret, String grandType) {
-        // 微服务的名称spring.application.name
-        ServiceInstance choose = loadBalancerClient.choose("oauth2-service");
-        // 1.定义url(申请令牌的url)
-        String url = choose.getUri().toString() + "/oauth/token";
-        // 2.定义头信息(有Client Id 和Client Secret)
-        MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
-        headers.add("Authorization", "Basic " + Base64.getEncoder().encodeToString((clientId + ":" + clientSecret).getBytes()));
-        // 3.定义请求体有授权模式用户的名称和密码
-        MultiValueMap<String, String> formData = new LinkedMultiValueMap<>();
-        formData.add("grant_type", grandType);
-        formData.add("username", dto.getUsername());
-        formData.add("password", dto.getPassword());
-        // 4.模拟浏览器发送POST请求携带头和请求体到认证服务器
-        HttpEntity<MultiValueMap<?, ?>> httpEntity = new HttpEntity<>(formData, headers);
-        ResponseEntity<JSONObject> responseEntity = restTemplate.exchange(url, HttpMethod.POST, httpEntity, JSONObject.class);
-        // 5.接收到返回的响应(就是:令牌的信息)
-        JSONObject body = responseEntity.getBody();
-        if (Objects.isNull(body)) {
+        try {
+            // TODO 先校验用户名、密码, 密码错误3次开启验证码
+            // 微服务的名称spring.application.name
+            ServiceInstance choose = loadBalancerClient.choose("oauth2-service");
+            // 1.定义url(申请令牌的url)
+            String url = choose.getUri().toString() + "/oauth/token";
+            // 2.定义头信息(有Client Id 和Client Secret)
+            MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
+            headers.add("Authorization", "Basic " + Base64.getEncoder().encodeToString((clientId + ":" + clientSecret).getBytes()));
+            // 3.定义请求体有授权模式用户的名称和密码
+            MultiValueMap<String, String> formData = new LinkedMultiValueMap<>();
+            formData.add("grant_type", grandType);
+            formData.add("username", dto.getUsername());
+            formData.add("password", dto.getPassword());
+            // 4.模拟浏览器发送POST请求携带头和请求体到认证服务器
+            HttpEntity<MultiValueMap<?, ?>> httpEntity = new HttpEntity<>(formData, headers);
+            ResponseEntity<JSONObject> responseEntity = restTemplate.exchange(url, HttpMethod.POST, httpEntity, JSONObject.class);
+            // 5.接收到返回的响应(就是:令牌的信息)
+            JSONObject body = responseEntity.getBody();
+            if (Objects.isNull(body)) {
+                throw new ServiceException(ResultCode.UNAUTHORIZED);
+            }
+            AuthToken authToken = new AuthToken();
+            authToken.setJti(body.getString("jti"));
+            authToken.setAccessToken(body.getString("access_token"));
+            authToken.setRefreshToken(body.getString("refresh_token"));
+            authToken.setExpiresIn(body.getInteger("expires_in"));
+            authToken.setTokenType(body.getString("token_type"));
+            // 设置到cookie中
+            saveCookie(authToken.getAccessToken());
+            return authToken;
+        } catch (Exception e) {
             throw new ServiceException(ResultCode.UNAUTHORIZED);
         }
-        AuthToken authToken = new AuthToken();
-        authToken.setJti(body.getString("jti"));
-        authToken.setAccessToken(body.getString("access_token"));
-        authToken.setRefreshToken(body.getString("refresh_token"));
-        authToken.setExpiresIn(body.getInteger("expires_in"));
-        authToken.setVerifyEnable(body.getBoolean("verifyEnable"));
-        authToken.setTokenType(body.getString("token_type"));
-        // 设置到cookie中
-        saveCookie(authToken.getAccessToken());
-        return authToken;
     }
 
     /**

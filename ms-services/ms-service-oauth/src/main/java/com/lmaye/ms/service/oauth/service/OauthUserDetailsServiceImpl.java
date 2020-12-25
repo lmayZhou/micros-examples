@@ -30,6 +30,9 @@ import java.util.stream.Collectors;
  */
 @Service
 public class OauthUserDetailsServiceImpl implements UserDetailsService {
+    /**
+     * Client Details Service
+     */
     @Autowired
     private ClientDetailsService clientDetailsService;
 
@@ -55,17 +58,16 @@ public class OauthUserDetailsServiceImpl implements UserDetailsService {
                 return new User(username, clientSecret, clientDetails.getAuthorities());
             }
         }
-        // TODO 查数据库, 密码错误3次开启验证码
+        // TODO 数据库查询
         String password = passwordEncoder.encode("123456");
         List<UserToken> users = new ArrayList<>();
-        users.add(new UserToken("lmay", password, AuthorityUtils.commaSeparatedStringToAuthorityList("admin"), 10000L, "Lmay Zhou", true));
-        users.add(new UserToken("andy", password, AuthorityUtils.commaSeparatedStringToAuthorityList("client"), 10001L, "Andy", false));
-        users.add(new UserToken("mark", password, AuthorityUtils.commaSeparatedStringToAuthorityList("client"), 10002L, "Mark", true));
+        users.add(new UserToken("lmay", password, AuthorityUtils.commaSeparatedStringToAuthorityList("admin"), 10000L, "Lmay Zhou"));
+        users.add(new UserToken("andy", password, AuthorityUtils.commaSeparatedStringToAuthorityList("client"), 10001L, "Andy"));
+        users.add(new UserToken("mark", password, AuthorityUtils.commaSeparatedStringToAuthorityList("client"), 10002L, "Mark"));
         List<User> userList = users.stream().filter(user -> user.getUsername().equals(username)).collect(Collectors.toList());
         if (!CollectionUtils.isEmpty(userList)) {
             return userList.get(0);
-        } else {
-            throw new UsernameNotFoundException("用户名或密码错误");
         }
+        return null;
     }
 }

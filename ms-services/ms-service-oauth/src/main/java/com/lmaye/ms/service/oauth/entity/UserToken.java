@@ -32,21 +32,14 @@ public class UserToken extends User implements Serializable {
     @ApiModelProperty("昵称")
     private String nickname;
 
-    /**
-     * 启用验证码
-     */
-    @ApiModelProperty("启用验证码")
-    private Boolean verifyEnable;
-
     public UserToken(String username, String password, Collection<? extends GrantedAuthority> authorities) {
         super(username, password, authorities);
     }
 
-    public UserToken(String username, String password, Collection<? extends GrantedAuthority> authorities, Long id, String nickname, Boolean verifyEnable) {
+    public UserToken(String username, String password, Collection<? extends GrantedAuthority> authorities, Long id, String nickname) {
         super(username, password, authorities);
         this.id = id;
         this.nickname = nickname;
-        this.verifyEnable = verifyEnable;
     }
 
     public Long getId() {
@@ -63,13 +56,5 @@ public class UserToken extends User implements Serializable {
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
-    }
-
-    public Boolean getVerifyEnable() {
-        return verifyEnable;
-    }
-
-    public void setVerifyEnable(Boolean verifyEnable) {
-        this.verifyEnable = verifyEnable;
     }
 }
