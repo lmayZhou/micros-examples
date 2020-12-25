@@ -1,29 +1,38 @@
 package com.lmaye.ms.service.oauth.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.lmaye.ms.core.constants.CoreConstants;
 import com.lmaye.ms.core.context.ResultCode;
+import com.lmaye.ms.core.context.ResultVO;
 import com.lmaye.ms.core.exception.ServiceException;
 import com.lmaye.ms.service.oauth.dto.LoginDTO;
 import com.lmaye.ms.service.oauth.entity.AuthToken;
 import com.lmaye.ms.service.oauth.service.LoginService;
 import com.lmaye.ms.service.oauth.utils.CookieUtil;
+import com.lmaye.ms.services.api.user.entity.SysUser;
+import com.lmaye.ms.services.api.user.feign.UserFeign;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Base64;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 /**
  * -- Login Service Impl
@@ -59,6 +68,24 @@ public class LoginServiceImpl implements LoginService {
     private int cookieMaxAge;
 
     /**
+     * User Feign
+     */
+    @Autowired
+    private UserFeign userFeign;
+
+    /**
+     * 密码加密
+     */
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    /**
+     * Redis Template
+     */
+    @Autowired
+    private RedisTemplate<String, Object> redisTemplate;
+
+    /**
      * 用户登录
      * - 密码授权模式
      *
@@ -66,12 +93,32 @@ public class LoginServiceImpl implements LoginService {
      * @param clientId     clientId
      * @param clientSecret clientSecret
      * @param grandType    grandType
-     * @return AuthToken
+     * @return ResultVO<AuthToken>
      */
     @Override
-    public AuthToken login(LoginDTO dto, String clientId, String clientSecret, String grandType) {
+    public ResultVO<AuthToken> login(LoginDTO dto, String clientId, String clientSecret, String grandType) {
         try {
-            // TODO 先校验用户名、密码, 密码错误3次开启验证码
+            AuthToken authToken = new AuthToken();
+            authToken.setEnableCaptcha(false);
+            // 先校验用户名、密码, 密码错误3次开启验证码
+            String username = dto.getUsername();
+            String password = dto.getPassword();
+            ResultVO<SysUser> result = userFeign.queryByUserName(username);
+            SysUser user = result.getData();
+            if (Objects.isNull(user) || !passwordEncoder.matches(password, user.getPassword())) {
+                // 用户密码错误
+                String key = CoreConstants.ENABLE_CAPTCHA_KEY_PREFIX + username;
+                if (!redisTemplate.hasKey(key)) {
+                    redisTemplate.opsForValue().set(key, 1, 1, TimeUnit.HOURS);
+                } else {
+                    redisTemplate.opsForValue().increment(key);
+                    Object total = redisTemplate.opsForValue().get(key);
+                    if (!Objects.isNull(total) && Integer.parseInt(total.toString()) >= CoreConstants.TRY_TIMES) {
+                        authToken.setEnableCaptcha(true);
+                    }
+                }
+                return ResultVO.response(ResultCode.USER_VERIFICATION_FAILURE, authToken);
+            }
             // 微服务的名称spring.application.name
             ServiceInstance choose = loadBalancerClient.choose("oauth2-service");
             // 1.定义url(申请令牌的url)
@@ -82,8 +129,8 @@ public class LoginServiceImpl implements LoginService {
             // 3.定义请求体有授权模式用户的名称和密码
             MultiValueMap<String, String> formData = new LinkedMultiValueMap<>();
             formData.add("grant_type", grandType);
-            formData.add("username", dto.getUsername());
-            formData.add("password", dto.getPassword());
+            formData.add("username", username);
+            formData.add("password", password);
             // 4.模拟浏览器发送POST请求携带头和请求体到认证服务器
             HttpEntity<MultiValueMap<?, ?>> httpEntity = new HttpEntity<>(formData, headers);
             ResponseEntity<JSONObject> responseEntity = restTemplate.exchange(url, HttpMethod.POST, httpEntity, JSONObject.class);
@@ -92,7 +139,6 @@ public class LoginServiceImpl implements LoginService {
             if (Objects.isNull(body)) {
                 throw new ServiceException(ResultCode.UNAUTHORIZED);
             }
-            AuthToken authToken = new AuthToken();
             authToken.setJti(body.getString("jti"));
             authToken.setAccessToken(body.getString("access_token"));
             authToken.setRefreshToken(body.getString("refresh_token"));
@@ -100,8 +146,8 @@ public class LoginServiceImpl implements LoginService {
             authToken.setTokenType(body.getString("token_type"));
             // 设置到cookie中
             saveCookie(authToken.getAccessToken());
-            return authToken;
-        } catch (Exception e) {
+            return ResultVO.success(authToken);
+        } catch (RestClientException e) {
             throw new ServiceException(ResultCode.UNAUTHORIZED);
         }
     }

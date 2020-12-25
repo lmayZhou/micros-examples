@@ -48,4 +48,15 @@ public interface CoreConstants {
      * 日期时间格式: yyyy-MM-dd HH:mm:ss
      */
     DateTimeFormatter YYYY_MM_DD_HH_MM_SS = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+    /**
+     * 开启验证码次数
+     */
+    int TRY_TIMES = 3;
+
+    /**
+     * 开启验证码KEY前缀
+     * - 用户密码错误
+     */
+    String ENABLE_CAPTCHA_KEY_PREFIX = "EnableCaptcha:";
 }

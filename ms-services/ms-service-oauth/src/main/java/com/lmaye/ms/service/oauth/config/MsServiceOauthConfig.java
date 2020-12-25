@@ -16,6 +16,9 @@ import org.springframework.security.oauth2.provider.token.store.redis.RedisToken
  */
 @Configurable
 public class MsServiceOauthConfig {
+    /**
+     * Redis Connection Factory
+     */
     @Autowired
     private RedisConnectionFactory redisConnectionFactory;
 

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Objects;
 
 /**
  * -- Login Redirect Controller
@@ -43,10 +44,8 @@ public class LoginRedirectController {
         // 用户名
         if (StringUtils.isNotBlank(username)) {
             model.addAttribute("username", username);
-            // TODO 错误3次，开启验证码
-            if (true) {
-                model.addAttribute("enableCaptcha", true);
-            }
+            // TODO 接口数据
+            model.addAttribute("enableCaptcha", true);
         }
         // 登录类型
         model.addAttribute("type", StringUtils.defaultIfBlank(type, "account"));

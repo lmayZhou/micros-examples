@@ -27,7 +27,8 @@ public enum ResultCode implements IResultCode {
     IP_DATA_INIT_FAILED(500, "ip.data.init.failed", "IP数据初始化失败"),
     GET_IP_ADDRESS_FAILED(500, "get.ip.address.failed", "获取IP地址失败"),
     OPERATION_FAILED(500, "operation.failed", "操作失败"),
-    SERVICE_UNAVAILABLE(503, "Service Unavailable", "服务器出错");
+    SERVICE_UNAVAILABLE(503, "Service Unavailable", "服务器出错"),
+    USER_VERIFICATION_FAILURE(401, "user.verification.failure", "用户名或密码错误");
 
     /**
      * 枚举编码

@@ -1,5 +1,6 @@
 package com.lmaye.ms.service.oauth.service;
 
+import com.lmaye.ms.core.context.ResultVO;
 import com.lmaye.ms.service.oauth.dto.LoginDTO;
 import com.lmaye.ms.service.oauth.entity.AuthToken;
 
@@ -19,7 +20,7 @@ public interface LoginService {
      * @param clientId     clientId
      * @param clientSecret clientSecret
      * @param grandType    grandType
-     * @return AuthToken
+     * @return ResultVO<AuthToken>
      */
-    AuthToken login(LoginDTO dto, String clientId, String clientSecret, String grandType);
+    ResultVO<AuthToken> login(LoginDTO dto, String clientId, String clientSecret, String grandType);
 }

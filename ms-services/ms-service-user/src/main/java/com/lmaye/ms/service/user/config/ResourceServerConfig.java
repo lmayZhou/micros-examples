@@ -89,7 +89,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         // 配置地址放行
-        http.authorizeRequests().antMatchers("/user/add", "/user/login", "/user/load/*").permitAll()
+        http.authorizeRequests().antMatchers("/user/add", "/user/login", "/user/queryByUserName/*").permitAll()
                 .anyRequest().authenticated();
     }
 }

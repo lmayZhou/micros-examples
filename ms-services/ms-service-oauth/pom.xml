@@ -39,6 +39,10 @@
             <groupId>com.lmaye</groupId>
             <artifactId>ms-starter-redis</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.lmaye</groupId>
+            <artifactId>ms-services-api</artifactId>
+        </dependency>
         <!-- Nacos -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>

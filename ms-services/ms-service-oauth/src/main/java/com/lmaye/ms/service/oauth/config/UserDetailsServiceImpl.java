@@ -1,6 +1,9 @@
 package com.lmaye.ms.service.oauth.config;
 
+import com.lmaye.ms.core.context.ResultVO;
 import com.lmaye.ms.service.oauth.entity.UserToken;
+import com.lmaye.ms.services.api.user.entity.SysUser;
+import com.lmaye.ms.services.api.user.feign.UserFeign;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -10,16 +13,11 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.provider.ClientDetails;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 /**
  * -- Oauth User Details Service Impl
@@ -37,10 +35,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private ClientDetailsService clientDetailsService;
 
     /**
-     * 密码加密
+     * User Feign
      */
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    private UserFeign userFeign;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -58,16 +56,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 return new User(username, clientSecret, clientDetails.getAuthorities());
             }
         }
-        // TODO 数据库查询
-        String password = passwordEncoder.encode("123456");
-        List<UserToken> users = new ArrayList<>();
-        users.add(new UserToken("lmay", password, AuthorityUtils.commaSeparatedStringToAuthorityList("admin"), 10000L, "Lmay Zhou"));
-        users.add(new UserToken("andy", password, AuthorityUtils.commaSeparatedStringToAuthorityList("client"), 10001L, "Andy"));
-        users.add(new UserToken("mark", password, AuthorityUtils.commaSeparatedStringToAuthorityList("client"), 10002L, "Mark"));
-        List<User> userList = users.stream().filter(user -> user.getUsername().equals(username)).collect(Collectors.toList());
-        if (!CollectionUtils.isEmpty(userList)) {
-            return userList.get(0);
+        // 数据查询
+        ResultVO<SysUser> result = userFeign.queryByUserName(username);
+        SysUser user = result.getData();
+        if(Objects.isNull(user)) {
+            return null;
         }
-        return null;
+        return new UserToken(user.getUserName(), user.getPassword(),
+                AuthorityUtils.commaSeparatedStringToAuthorityList("admin"), user.getId(), "");
     }
 }

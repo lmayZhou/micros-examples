@@ -48,11 +48,11 @@ public class LoginController {
      * 用户登录
      * - 密码授权模式
      *
-     * @param dto LoginDTO
+     * @param dto     LoginDTO
      * @return ResultVO<AuthToken>
      */
     @PostMapping("/login")
     public ResultVO<AuthToken> login(@RequestBody LoginDTO dto) {
-        return ResultVO.success(loginService.login(dto, clientId, clientSecret, GRAND_TYPE));
+        return loginService.login(dto, clientId, clientSecret, GRAND_TYPE);
     }
 }

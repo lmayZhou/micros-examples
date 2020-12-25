@@ -26,6 +26,9 @@ import java.util.Objects;
 @ConditionalOnClass({Redisson.class, RedisOperations.class})
 @AutoConfigureAfter(org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration.class)
 public class RedisAutoConfiguration {
+    /**
+     * Redis Properties
+     */
     private final RedisProperties redisProperties;
 
     public RedisAutoConfiguration(final RedisProperties redisProperties) {

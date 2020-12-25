@@ -49,4 +49,10 @@ public class AuthToken implements Serializable {
      */
     @ApiModelProperty("Token类型")
     private String tokenType;
+
+    /**
+     * 启用验证码
+     */
+    @ApiModelProperty("启用验证码")
+    private Boolean enableCaptcha;
 }
