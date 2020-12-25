@@ -13,24 +13,6 @@ spring:
   profiles:
     active: dev
 
-# Mybatis Plus
-#mybatis-plus:
-#  mapper-locations: classpath:/mapper/*Mapper.xml
-#  type-aliases-package: com.yunji.yj.service.entity.*
-#  global-config:
-#    db-config:
-#      id-type: id_worker
-#      insert-strategy: not_null
-#      update-strategy: not_null
-#      select-strategy: not_empty
-#      table-underline: true
-#      capital-mode: true
-#  type-handlers-package: com.yunji.yj.service.type
-#  configuration:
-#    jdbc-type-for-null: null
-#    map-underscore-to-camel-case: true
-#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-
 # Swagger 配置
 swagger:
   enabled: true
