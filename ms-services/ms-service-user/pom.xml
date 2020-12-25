@@ -34,20 +34,27 @@
             <groupId>com.lmaye</groupId>
             <artifactId>ms-starter-mybatis</artifactId>
         </dependency>
+        <!-- Microservice Services Api -->
+        <dependency>
+            <groupId>com.lmaye</groupId>
+            <artifactId>ms-services-api</artifactId>
+        </dependency>
         <!-- Nacos -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
-        <!-- Spring Boot Web -->
+        <!-- undertow -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-undertow</artifactId>
         </dependency>
+        <!-- oauth2 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-oauth2</artifactId>
         </dependency>
+        <!-- spring-boot-starter-web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>

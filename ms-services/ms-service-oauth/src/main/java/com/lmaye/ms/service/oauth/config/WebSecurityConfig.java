@@ -1,6 +1,5 @@
 package com.lmaye.ms.service.oauth.config;
 
-import com.lmaye.ms.service.oauth.service.OauthUserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
@@ -27,7 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      * SpringSecurity 用户自定义授权认证类
      */
     @Autowired
-    private OauthUserDetailsServiceImpl userDetailsService;
+    private UserDetailsServiceImpl userDetailsService;
 
     /**
      * 注入密码加密

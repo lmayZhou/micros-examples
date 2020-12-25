@@ -5,7 +5,7 @@
     <artifactId>ms-services-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>ms-services-api</name>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
     <description>Microservice Services Api project for Spring Boot</description>
 
     <!-- lookup parent from repository -->
@@ -22,32 +22,18 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
+    <!-- dependencies -->
     <dependencies>
+        <!-- Microservice core -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
+            <groupId>com.lmaye</groupId>
+            <artifactId>ms-core</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
-
+        <!--openfeign-->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.junit.vintage</groupId>
-                    <artifactId>junit-vintage-engine</artifactId>
-                </exclusion>
-            </exclusions>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
-
 </project>

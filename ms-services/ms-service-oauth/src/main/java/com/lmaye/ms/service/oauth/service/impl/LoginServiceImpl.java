@@ -25,6 +25,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Base64;
 import java.util.Objects;
 
+/**
+ * -- Login Service Impl
+ *
+ * @author lmay.Zhou
+ * @date 2020/12/23 14:30
+ * @email lmay@lmaye.com
+ */
 @Service
 public class LoginServiceImpl implements LoginService {
     /**

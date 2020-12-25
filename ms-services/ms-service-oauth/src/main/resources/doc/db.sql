@@ -6,13 +6,9 @@
 
 drop table if exists oauth_client_details;
 
-drop index idx_role_permission on sys_role_permission;
-
 drop table if exists sys_role_permission;
 
 drop table if exists sys_user;
-
-drop index idx_user_role on sys_user_role;
 
 drop table if exists sys_user_role;
 
@@ -114,3 +110,5 @@ create unique index idx_user_role on sys_user_role
    role_id
 );
 
+INSERT INTO oauth_client_details(`client_id`, `resource_ids`, `client_secret`, `scope`, `authorized_grant_types`, `web_server_redirect_uri`, `authorities`, `access_token_validity`, `refresh_token_validity`, `additional_information`, `autoapprove`) VALUES ('user-client', NULL, '$2a$10$Qg.q5o1ZBVy/7TrV107u6ORr1Vyl.wm8AGU5tFcbpw2zPQuuxh82C', 'all', 'authorization_code,refresh_token,password', NULL, NULL, 3600, 36000, NULL, '1');
+INSERT INTO oauth_client_details(`client_id`, `resource_ids`, `client_secret`, `scope`, `authorized_grant_types`, `web_server_redirect_uri`, `authorities`, `access_token_validity`, `refresh_token_validity`, `additional_information`, `autoapprove`) VALUES ('ms-oauth', NULL, '$2a$10$Uup.KB3fj0ixHHih2eehZ.MceR1hDOCT0WpPiOFZNgLCY7uEvHRte', 'all', 'authorization_code,refresh_token,password', NULL, NULL, 3600, 36000, NULL, '1');

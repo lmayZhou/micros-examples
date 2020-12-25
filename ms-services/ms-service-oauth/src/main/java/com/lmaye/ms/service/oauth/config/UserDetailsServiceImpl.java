@@ -1,4 +1,4 @@
-package com.lmaye.ms.service.oauth.service;
+package com.lmaye.ms.service.oauth.config;
 
 import com.lmaye.ms.service.oauth.entity.UserToken;
 import org.apache.commons.lang3.StringUtils;
@@ -29,7 +29,7 @@ import java.util.stream.Collectors;
  * @email lmay@lmaye.com
  */
 @Service
-public class OauthUserDetailsServiceImpl implements UserDetailsService {
+public class UserDetailsServiceImpl implements UserDetailsService {
     /**
      * Client Details Service
      */

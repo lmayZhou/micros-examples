@@ -1,6 +1,5 @@
 package com.lmaye.ms.service.oauth.config;
 
-import com.lmaye.ms.service.oauth.service.OauthUserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.bootstrap.encrypt.KeyProperties;
 import org.springframework.context.annotation.Bean;
@@ -45,7 +44,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
      * SpringSecurity 用户自定义授权认证类
      */
     @Autowired
-    private OauthUserDetailsServiceImpl userDetailsService;
+    private UserDetailsServiceImpl userDetailsService;
 
     /**
      * 数据源
