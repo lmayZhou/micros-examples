@@ -24,35 +24,10 @@
 
     <!-- Dependencies -->
     <dependencies>
-        <!-- Microservice Swagger Starter -->
-        <dependency>
-            <groupId>com.lmaye</groupId>
-            <artifactId>ms-starter-swagger</artifactId>
-        </dependency>
         <!-- Microservice MinIO Starter -->
         <dependency>
             <groupId>com.lmaye</groupId>
             <artifactId>ms-starter-minio</artifactId>
-        </dependency>
-        <!-- Nacos -->
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-        </dependency>
-        <!-- Spring Boot Web -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-undertow</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-tomcat</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
     </dependencies>
 </project>

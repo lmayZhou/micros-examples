@@ -24,11 +24,6 @@
 
     <!-- Dependencies -->
     <dependencies>
-        <!-- Microservice Swagger Starter -->
-        <dependency>
-            <groupId>com.lmaye</groupId>
-            <artifactId>ms-starter-swagger</artifactId>
-        </dependency>
         <!-- Microservice Mybatis Starter -->
         <dependency>
             <groupId>com.lmaye</groupId>
@@ -38,32 +33,6 @@
         <dependency>
             <groupId>com.lmaye</groupId>
             <artifactId>ms-services-api</artifactId>
-        </dependency>
-        <!-- Nacos -->
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-        </dependency>
-        <!-- undertow -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-undertow</artifactId>
-        </dependency>
-        <!-- oauth2 -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-oauth2</artifactId>
-        </dependency>
-        <!-- spring-boot-starter-web -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-tomcat</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
     </dependencies>
 </project>

@@ -30,7 +30,6 @@
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <spring-cloud-alibaba.version>2.2.1.RELEASE</spring-cloud-alibaba.version>
         <disruptor.version>3.4.2</disruptor.version>
     </properties>
 
@@ -40,7 +39,11 @@
         <dependency>
             <groupId>com.lmaye</groupId>
             <artifactId>ms-core</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <!-- Microservice Swagger Starter -->
+        <dependency>
+            <groupId>com.lmaye</groupId>
+            <artifactId>ms-starter-swagger</artifactId>
         </dependency>
         <!-- Spring Boot Starter -->
         <dependency>
@@ -68,6 +71,31 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
+        <!-- Nacos -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <!-- Spring Boot Web -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-undertow</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- oauth2 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-oauth2</artifactId>
+        </dependency>
         <!-- Spring Boot Devtools -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -92,6 +120,12 @@
     <!-- Dependency Management -->
     <dependencyManagement>
         <dependencies>
+            <!-- Microservice core -->
+            <dependency>
+                <groupId>com.lmaye</groupId>
+                <artifactId>ms-core</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
             <!-- Microservice Swagger Starter -->
             <dependency>
                 <groupId>com.lmaye</groupId>
@@ -155,14 +189,6 @@
                 <artifactId>ms-services-api</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
                 <scope>provided</scope>
-            </dependency>
-            <!-- Spring Cloud Alibaba -->
-            <dependency>
-                <groupId>com.alibaba.cloud</groupId>
-                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>${spring-cloud-alibaba.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
             </dependency>
             <!-- 异步日志 -->
             <dependency>
