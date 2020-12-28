@@ -1,4 +1,4 @@
-package com.lmaye.ms.gateway.filter;
+package com.lmaye.ms.gateway.web.filter;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;

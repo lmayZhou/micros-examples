@@ -5,6 +5,7 @@
     <artifactId>ms-gateway</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>ms-gateway</name>
+    <packaging>pom</packaging>
     <description>Microservice Gateway project for Spring Boot</description>
 
     <!-- lookup parent from repository -->
@@ -21,20 +22,9 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-gateway</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
-    </dependencies>
+    <!-- Project Modules -->
+    <modules>
+        <!-- WEB Gateway -->
+        <module>ms-gateway-web</module>
+    </modules>
 </project>
