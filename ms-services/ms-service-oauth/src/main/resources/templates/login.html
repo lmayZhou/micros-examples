@@ -48,7 +48,7 @@
                 <span class="message-error" th:text="${errorMsg}"></span>
             </div>
             <div th:class="${type} == 'account' ? 'form1' : 'form1 hide'">
-                <form id="accountLogin" action="/user/login" method="post">
+                <!--<form id="accountLogin" action="/user/login" method="post">-->
                     <p class="p-input pos">
                         <input type="text" id="num" name="username" th:value="${username}" placeholder="请输入用户名/手机号"
                                maxlength="30">
@@ -59,11 +59,11 @@
                         <span class="tel-warn pass-err hide"><em>账号或密码错误，请重新输入</em><i class="icon-warn"></i></span>
                     </p>
                     <p th:class="${enableCaptcha} ? 'p-input pos code' : 'p-input pos code hide'">
-                        <input type="text" id="veri" name="captcha" maxlength="6" placeholder="请输入验证码">
+                        <input type="text" id="veri" name="verifyCode" maxlength="6" placeholder="请输入验证码">
                         <img id="captchaImg" onclick="changeCaptcha()" title="点击刷新验证码" src="/oauth/captcha.jpg"/>
                         <span class="tel-warn img-err hide"><em>账号或密码错误，请重新输入</em><i class="icon-warn"></i></span>
                     </p>
-                </form>
+                <!--</form>-->
             </div>
             <div th:class="${type} == 'mobile' ? 'form2' : 'form2 hide'">
                 <form id="smsLogin" action="/authentication/mobile" method="post">

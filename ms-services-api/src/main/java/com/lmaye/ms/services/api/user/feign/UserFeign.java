@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @date 2020/12/25 12:10
  * @email lmay@lmaye.com
  */
-@FeignClient(name="service-user")
+@FeignClient(name="user-service")
 @RequestMapping("/user")
 public interface UserFeign {
     /**

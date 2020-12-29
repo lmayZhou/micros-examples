@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Objects;
 
 /**
  * -- Login Redirect Controller
@@ -60,5 +59,10 @@ public class LoginRedirectController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @GetMapping("/index")
+    public String index() {
+        return "index";
     }
 }

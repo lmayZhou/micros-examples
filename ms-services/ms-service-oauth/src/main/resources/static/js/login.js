@@ -124,29 +124,29 @@ $(function () {
             $('.num2-err').text('手机号不合法，请重新输入');
             return false;
         }
-        // $.ajax({
-        //     url: '/checkPhone',
-        //     type: 'post',
-        //     dataType: 'json',
-        //     async: false,
-        //     data: {phone: phone, type: "login"},
-        //     success: function (data) {
-        //         if (data.code === '0') {
-        //             $('.num2-err').addClass('hide');
-        //             // console.log('aa');
-        //             // return true;
-        //         } else {
-        //             $('.num2-err').removeClass('hide').text(data.msg);
-        //             // console.log('bb');
-        //             status = false;
-        //             // return false;
-        //         }
-        //     },
-        //     error: function () {
-        //         status = false;
-        //         // return false;
-        //     }
-        // });
+        /*$.ajax({
+            url: '/checkPhone',
+            type: 'post',
+            dataType: 'json',
+            async: false,
+            data: {phone: phone, type: "login"},
+            success: function (data) {
+                if (data.code === '0') {
+                    $('.num2-err').addClass('hide');
+                    // console.log('aa');
+                    // return true;
+                } else {
+                    $('.num2-err').removeClass('hide').text(data.msg);
+                    // console.log('bb');
+                    status = false;
+                    // return false;
+                }
+            },
+            error: function () {
+                status = false;
+                // return false;
+            }
+        });*/
         return status;
     }
 
@@ -174,7 +174,22 @@ $(function () {
                             return false;
                         }
                     }
-                    $('#accountLogin').submit();
+                    // $('#accountLogin').submit();
+                    $.ajax({
+                        url: '/user/login',
+                        type: 'post',
+                        contentType: "application/json",
+                        dataType: 'json',
+                        async: false,
+                        data: JSON.stringify({ "username" : username, "password" : password }),
+                        success: function (data) {
+                            console.log(data);
+                            // window.location.href = "/user/index";
+                        },
+                        error: function () {
+
+                        }
+                    });
                 } else {
                     return false;
                 }
