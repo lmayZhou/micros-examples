@@ -27,9 +27,16 @@ spring:
           uri: http://localhost:8003
           predicates:
             - Host = 127.0.0.1**
-            # - Path=/brand**
+#            - Path=/**
+#          filters:
+#            - PrefixPath=/user
+#            - StripPrefix=1
 
 management:
   endpoint:
     gateway:
       enabled: true
+
+# 日志
+logging:
+  config: classpath:log4j2-dev.xml

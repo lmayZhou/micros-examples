@@ -1,6 +1,6 @@
 # 服务端口
 server:
-  port: 9001
+  port: 8001
 
 # Spring 配置
 spring:

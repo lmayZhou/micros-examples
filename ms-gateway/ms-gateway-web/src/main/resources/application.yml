@@ -1,6 +1,6 @@
 # 服务端口
 server:
-  port: 8060
+  port: 80
 
 # Spring 配置
 spring:
