@@ -89,7 +89,10 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         // 配置地址放行
-        http.authorizeRequests().antMatchers("/user/add", "/user/login", "/user/queryByUserName/*").permitAll()
-                .anyRequest().authenticated();
+        http.authorizeRequests().antMatchers(
+                "/register", "/queryByUserName/*", "/doc.html", "/v2/api-docs", "/swagger-ui.html",
+                "/swagger-resources/configuration/ui", "/swagger-resources", "/swagger-resources/configuration/security",
+                "/course/coursebase/**", "/webjars/**", "/api/**/v2/api-docs"
+        ).permitAll().anyRequest().authenticated();
     }
 }

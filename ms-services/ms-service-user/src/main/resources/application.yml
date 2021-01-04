@@ -1,6 +1,9 @@
 # 服务端口
 server:
   port: 8003
+  servlet:
+    # 请求路径默认
+    context-path: /user
 
 # Spring 配置
 spring:

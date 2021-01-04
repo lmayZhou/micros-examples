@@ -25,7 +25,7 @@ import java.util.Collections;
  * @since 2020/7/5 13:22 星期日
  */
 @RestController
-@RequestMapping("/user")
+//@RequestMapping("/user")
 @Api(tags = "用户相关接口")
 public class UserController {
     /**

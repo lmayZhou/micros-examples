@@ -24,19 +24,16 @@ spring:
               - DELETE
       routes:
         - id: user-service-route
-          uri: http://localhost:8003
+#          uri: http://localhost:8003
+          uri: lb://user-service
           predicates:
-            - Host = 127.0.0.1**
-#            - Path=/**
-#          filters:
+#            - Host = test.lmaye.com**
+            - Path=/**
+          filters:
 #            - PrefixPath=/user
-#            - StripPrefix=1
+            - StripPrefix=1
 
 management:
   endpoint:
     gateway:
       enabled: true
-
-# 日志
-logging:
-  config: classpath:log4j2-dev.xml

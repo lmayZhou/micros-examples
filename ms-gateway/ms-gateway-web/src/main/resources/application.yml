@@ -6,3 +6,5 @@ server:
 spring:
   application:
     name: web-gateway
+  profiles:
+    active: dev

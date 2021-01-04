@@ -148,6 +148,6 @@ public class SysUser implements Serializable {
      * 版本号
      */
     @Version
-    @TableField("varsion")
-    private Integer varsion;
+    @TableField("version")
+    private Integer version;
 }

@@ -100,6 +100,6 @@ public class SysRole implements Serializable {
      * 版本号
      */
     @Version
-    @TableField("varsion")
-    private Integer varsion;
+    @TableField("version")
+    private Integer version;
 }
