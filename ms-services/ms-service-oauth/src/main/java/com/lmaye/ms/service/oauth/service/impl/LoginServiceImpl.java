@@ -108,7 +108,8 @@ public class LoginServiceImpl implements LoginService {
             if (Objects.isNull(user) || !passwordEncoder.matches(password, user.getPassword())) {
                 // 用户密码错误
                 String key = CoreConstants.ENABLE_CAPTCHA_KEY_PREFIX + username;
-                if (!redisTemplate.hasKey(key)) {
+                Boolean hasKey = redisTemplate.hasKey(key);
+                if (!Objects.isNull(hasKey) && !hasKey) {
                     redisTemplate.opsForValue().set(key, 1, 1, TimeUnit.HOURS);
                 } else {
                     redisTemplate.opsForValue().increment(key);
