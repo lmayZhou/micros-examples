@@ -40,6 +40,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private UserFeign userFeign;
 
+    /**
+     * 加载用户
+     * - 根据用户名
+     *
+     * @param username 用户名
+     * @return UserDetails
+     * @throws UsernameNotFoundException 异常
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         if (StringUtils.isEmpty(username)) {
@@ -51,9 +59,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if (Objects.isNull(authentication)) {
             ClientDetails clientDetails = clientDetailsService.loadClientByClientId(username);
             if (!Objects.isNull(clientDetails)) {
-                //秘钥
-                String clientSecret = clientDetails.getClientSecret();
-                return new User(username, clientSecret, clientDetails.getAuthorities());
+                return new User(username, clientDetails.getClientSecret(), clientDetails.getAuthorities());
             }
         }
         // 数据查询
