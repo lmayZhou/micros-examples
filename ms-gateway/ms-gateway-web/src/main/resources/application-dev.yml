@@ -9,6 +9,7 @@ spring:
         server-addr: 192.168.0.10:8848
 #        namespace: a6b8fdfd-14b4-4264-94fc-9d41b92a7035
         namespace: 7fbd94b1-686e-4270-b148-d50e4b2ce64c
+    # 网关
     gateway:
       globalcors:
         cors-configurations:
@@ -22,6 +23,7 @@ spring:
               - POST
               - PUT
               - DELETE
+      # 路由
       routes:
         - id: user-service-route
 #          uri: http://localhost:8003
