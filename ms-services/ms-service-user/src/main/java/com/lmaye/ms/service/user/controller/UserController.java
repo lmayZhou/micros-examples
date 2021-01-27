@@ -8,10 +8,7 @@ import com.lmaye.ms.services.api.user.entity.SysUser;
 import com.lmaye.ms.starter.mybatis.utils.MyBatisUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 import java.util.Collections;
@@ -69,5 +66,17 @@ public class UserController {
         mobileQuery.setShould(emailQuery);
         query.setShould(mobileQuery);
         return Mono.just(ResultVO.success(sysUserService.getOne(MyBatisUtils.convert(query))));
+    }
+
+    /**
+     * 新增用户信息
+     *
+     * @param user 请求参数
+     * @return Mono<ResultVO<SysUser>>
+     */
+    @PostMapping("/save")
+    @ApiOperation(value = "新增用户信息", notes = "新增用户信息", response = ResultVO.class)
+    public Mono<ResultVO<SysUser>> save(@RequestBody SysUser user) {
+        return Mono.just(ResultVO.success(sysUserService.insertOrUpdate(user)));
     }
 }
