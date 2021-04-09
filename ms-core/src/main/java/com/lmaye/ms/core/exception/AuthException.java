@@ -16,12 +16,12 @@ public class AuthException extends Exception {
     private final IResultCode resultCode;
 
     public AuthException(IResultCode resultCode) {
-        super(resultCode.getPropKey());
+        super(resultCode.getKey());
         this.resultCode = resultCode;
     }
 
     public AuthException(IResultCode resultCode, Throwable cause) {
-        super(resultCode.getPropKey(), cause);
+        super(resultCode.getKey(), cause);
         this.resultCode = resultCode;
     }
 

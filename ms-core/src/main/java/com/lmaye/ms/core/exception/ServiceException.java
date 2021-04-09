@@ -17,12 +17,12 @@ public class ServiceException extends RuntimeException {
     private final IResultCode resultCode;
 
     public ServiceException(IResultCode resultCode) {
-        super(resultCode.getPropKey());
+        super(resultCode.getKey());
         this.resultCode = resultCode;
     }
 
     public ServiceException(IResultCode resultCode, Throwable cause) {
-        super(resultCode.getPropKey(), cause);
+        super(resultCode.getKey(), cause);
         this.resultCode = resultCode;
     }
 

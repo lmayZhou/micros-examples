@@ -5,6 +5,7 @@ import com.lmaye.ms.core.constants.CoreConstants;
 import com.lmaye.ms.core.context.ResultCode;
 import com.lmaye.ms.core.context.ResultVO;
 import com.lmaye.ms.core.exception.ServiceException;
+import com.lmaye.ms.service.oauth.context.OAuthResultCode;
 import com.lmaye.ms.service.oauth.dto.LoginDTO;
 import com.lmaye.ms.service.oauth.entity.AuthToken;
 import com.lmaye.ms.service.oauth.service.LoginService;
@@ -28,7 +29,6 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Base64;
 import java.util.Objects;
@@ -118,7 +118,7 @@ public class LoginServiceImpl implements LoginService {
                         authToken.setEnableCaptcha(true);
                     }
                 }
-                return ResultVO.response(ResultCode.USER_VERIFICATION_FAILURE, authToken);
+                return ResultVO.response(OAuthResultCode.USER_VERIFICATION_FAILURE, authToken);
             }
             // 微服务的名称spring.application.name
             ServiceInstance choose = loadBalancerClient.choose("oauth2-service");
