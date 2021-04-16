@@ -1,5 +1,7 @@
 package com.example.ms.starter.canal.utils;
 
+import com.example.ms.starter.canal.annotation.CanalTable;
+import com.example.ms.starter.canal.enums.TableNameEnum;
 import com.example.ms.starter.canal.handler.EntryHandler;
 
 import java.util.List;

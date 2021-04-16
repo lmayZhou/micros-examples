@@ -1,9 +1,14 @@
 package com.example.ms.starter.canal;
 
 import com.alibaba.otter.canal.protocol.CanalEntry;
+import com.example.ms.starter.canal.client.SimpleCanalClient;
+import com.example.ms.starter.canal.factory.EntryColumnModelFactory;
 import com.example.ms.starter.canal.handler.EntryHandler;
 import com.example.ms.starter.canal.handler.MessageHandler;
 import com.example.ms.starter.canal.handler.RowDataHandler;
+import com.example.ms.starter.canal.handler.impl.AsyncMessageHandlerImpl;
+import com.example.ms.starter.canal.handler.impl.RowDataHandlerImpl;
+import com.example.ms.starter.canal.handler.impl.SyncMessageHandlerImpl;
 import com.example.ms.starter.canal.properties.CanalProperties;
 import com.example.ms.starter.canal.properties.CanalSimpleProperties;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
