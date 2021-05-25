@@ -156,7 +156,7 @@ public class MinIoFileStoreServiceImpl implements IMinIoFileStoreService {
             return true;
         } catch (Exception e) {
             log.error("create bucket error: {}", e.getMessage());
-            throw new ServiceException(ResultCode.OPERATION_FAILED);
+            throw new ServiceException(ResultCode.FAILURE);
         }
     }
 
@@ -177,7 +177,7 @@ public class MinIoFileStoreServiceImpl implements IMinIoFileStoreService {
             return true;
         } catch (Exception e) {
             log.error("delete bucket error: {}", e.getMessage());
-            throw new ServiceException(ResultCode.OPERATION_FAILED);
+            throw new ServiceException(ResultCode.FAILURE);
         }
     }
 
@@ -244,7 +244,7 @@ public class MinIoFileStoreServiceImpl implements IMinIoFileStoreService {
             return fileName;
         } catch (Exception e) {
             log.error("save file error: {}", e.getMessage());
-            throw new ServiceException(ResultCode.OPERATION_FAILED);
+            throw new ServiceException(ResultCode.FAILURE);
         }
     }
 
@@ -272,7 +272,7 @@ public class MinIoFileStoreServiceImpl implements IMinIoFileStoreService {
             return fileName;
         } catch (Exception e) {
             log.error("save file error: {}", e.getMessage());
-            throw new ServiceException(ResultCode.OPERATION_FAILED);
+            throw new ServiceException(ResultCode.FAILURE);
         }
     }
 
@@ -303,7 +303,7 @@ public class MinIoFileStoreServiceImpl implements IMinIoFileStoreService {
             return true;
         } catch (Exception e) {
             log.error("delete file error: {}", e.getMessage());
-            throw new ServiceException(ResultCode.OPERATION_FAILED);
+            throw new ServiceException(ResultCode.FAILURE);
         }
     }
 
@@ -333,7 +333,7 @@ public class MinIoFileStoreServiceImpl implements IMinIoFileStoreService {
             return client.getObject(GetObjectArgs.builder().bucket(bucket).object(fileName).build());
         } catch (Exception e) {
             log.error("get file stream error: {}", e.getMessage());
-            throw new ServiceException(ResultCode.OPERATION_FAILED);
+            throw new ServiceException(ResultCode.FAILURE);
         }
     }
 
@@ -368,7 +368,7 @@ public class MinIoFileStoreServiceImpl implements IMinIoFileStoreService {
             return file;
         } catch (IOException e) {
             log.error("get file error: {}", e.getMessage());
-            throw new ServiceException(ResultCode.OPERATION_FAILED);
+            throw new ServiceException(ResultCode.FAILURE);
         }
     }
 
@@ -396,7 +396,7 @@ public class MinIoFileStoreServiceImpl implements IMinIoFileStoreService {
             client.downloadObject(DownloadObjectArgs.builder().bucket(bucket).filename(fileName).build());
         } catch (Exception e) {
             log.error("download file error: {}", e.getMessage());
-            throw new ServiceException(ResultCode.OPERATION_FAILED);
+            throw new ServiceException(ResultCode.FAILURE);
         }
     }
 
@@ -431,7 +431,7 @@ public class MinIoFileStoreServiceImpl implements IMinIoFileStoreService {
                     .object(fileName).expiry(duration, unit).build());
         } catch (Exception e) {
             log.error("get pre signed url  error: {}", e.getMessage());
-            throw new ServiceException(ResultCode.OPERATION_FAILED);
+            throw new ServiceException(ResultCode.FAILURE);
         }
     }
 }
