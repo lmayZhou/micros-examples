@@ -13,22 +13,21 @@ public enum ResultCode implements IResultCode {
     /**
      * 枚举值
      */
-    SUCCESS(200, "success", "处理成功"),
-    FAILURE(-100, "failure", "处理失败"),
-    UNAUTHORIZED(401, "unauthorized", "请求授权失败"),
-    FORBIDDEN(403, "forbidden", "请求不允许"),
-    NOT_FOUND(404, "not.found", "无法找到资源"),
-    METHOD_NOT_ALLOWED(405, "method.not.allowed", "请求方法被禁止"),
-    INTERNAL_SERVER_ERROR(500, "internal.server.error", "服务器内部错误"),
-    JSON_BEAN_TO_STR_FAILED(500, "json.bean.to.str.failed", "JsonBean转字符串失败"),
-    JSON_STR_TO_BEAN_FAILED(500, "json.str.to.bean.failed", "Json字符串转Bean失败"),
-    ARGUMENT_BIND_FAILED(400, "argument.bind.failed", "参数绑定失败"),
-    ANTISAMY_DATA_INIT_FAILED(500, "antisamy.data.init.failed", "antisamy数据初始化失败"),
-    IP_DATA_INIT_FAILED(500, "ip.data.init.failed", "IP数据初始化失败"),
-    GET_IP_ADDRESS_FAILED(500, "get.ip.address.failed", "获取IP地址失败"),
-    OPERATION_FAILED(500, "operation.failed", "操作失败"),
-    SERVICE_UNAVAILABLE(503, "Service Unavailable", "服务器出错"),
-    USER_VERIFICATION_FAILURE(401, "user.verification.failure", "用户名或密码错误");
+    SUCCESS(200, "msg.success", "请求成功"),
+    FAILURE(-100, "msg.failure", "请求失败"),
+    FLOW_LIMITING(-130, "msg.flow.limiting", "流量限制"),
+    ARGUMENT_BIND_FAILED(-131, "msg.argument.bind.failed", "参数绑定失败"),
+    ANTISAMY_DATA_INIT_FAILED(-132, "msg.antisamy.data.init.failed", "antisamy数据初始化失败"),
+    JSON_BEAN_TO_STR_FAILED(-133, "msg.json.bean.to.str.failed", "Json转字符串失败"),
+    JSON_STR_TO_BEAN_FAILED(-134, "msg.json.str.to.bean.failed", "字符串转Json失败"),
+    IP_DATA_INIT_FAILED(-135, "msg.ip.data.init.failed", "IP初始化失败"),
+    GET_IP_ADDRESS_FAILED(-136, "msg.get.ip.address.failed", "获取IP地址失败"),
+    UNAUTHORIZED(401, "msg.unauthorized", "未经授权"),
+    FORBIDDEN(403, "msg.forbidden", "拒绝访问"),
+    NOT_FOUND(404, "msg.not.found", "未找到"),
+    METHOD_NOT_ALLOWED(405, "msg.method.not.allowed", "方法禁用"),
+    INTERNAL_SERVER_ERROR(500, "msg.internal.server.error", "服务器内部错误"),
+    SERVICE_UNAVAILABLE(503, "msg.service.unavailable", "服务不可用");
 
     /**
      * 枚举编码
@@ -36,18 +35,18 @@ public enum ResultCode implements IResultCode {
     private final Integer code;
 
     /**
-     * 枚举属性键(国际化)
+     * 消息键(国际化)
      */
-    private final String propKey;
+    private final String key;
 
     /**
      * 枚举描述
      */
     private final String desc;
 
-    ResultCode(Integer code, String propKey, String desc) {
+    ResultCode(Integer code, String key, String desc) {
         this.code = code;
-        this.propKey = propKey;
+        this.key = key;
         this.desc = desc;
     }
 
@@ -57,8 +56,8 @@ public enum ResultCode implements IResultCode {
     }
 
     @Override
-    public String getPropKey() {
-        return propKey;
+    public String getKey() {
+        return key;
     }
 
     @Override

@@ -17,12 +17,12 @@ public class HandleException extends RuntimeException {
     private final IResultCode resultCode;
 
     public HandleException(IResultCode resultCode) {
-        super(resultCode.getPropKey());
+        super(resultCode.getKey());
         this.resultCode = resultCode;
     }
 
     public HandleException(IResultCode resultCode, Throwable cause) {
-        super(resultCode.getPropKey(), cause);
+        super(resultCode.getKey(), cause);
         this.resultCode = resultCode;
     }
 

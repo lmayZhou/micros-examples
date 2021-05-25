@@ -17,12 +17,12 @@ public class CoreException extends RuntimeException {
     private final IResultCode resultCode;
 
     public CoreException(IResultCode resultCode) {
-        super(resultCode.getPropKey());
+        super(resultCode.getKey());
         this.resultCode = resultCode;
     }
 
     public CoreException(IResultCode resultCode, Throwable cause) {
-        super(resultCode.getPropKey(), cause);
+        super(resultCode.getKey(), cause);
         this.resultCode = resultCode;
     }
 

@@ -16,11 +16,11 @@ public interface IResultCode {
     Integer getCode();
 
     /**
-     * 枚举属性键
+     * 消息键(国际化)
      *
      * @return String
      */
-    String getPropKey();
+    String getKey();
 
     /**
      * 获取消息

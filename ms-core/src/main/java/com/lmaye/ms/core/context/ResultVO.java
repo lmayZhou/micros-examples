@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.experimental.Accessors;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -50,12 +51,14 @@ public class ResultVO<T> implements Serializable {
 
     public ResultVO(IResultCode resultCode) {
         this.code = resultCode.getCode();
-        this.msg = resultCode.getDesc();
+        String key = resultCode.getKey();
+        this.msg = StringUtils.isBlank(key) ? resultCode.getDesc() : key;
     }
 
     public ResultVO(IResultCode resultCode, T data) {
         this.code = resultCode.getCode();
-        this.msg = resultCode.getDesc();
+        String key = resultCode.getKey();
+        this.msg = StringUtils.isBlank(key) ? resultCode.getDesc() : key;
         this.data = data;
     }
 

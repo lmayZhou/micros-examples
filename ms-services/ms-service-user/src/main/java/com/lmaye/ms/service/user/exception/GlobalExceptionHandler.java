@@ -9,9 +9,8 @@ import com.lmaye.ms.core.utils.GsonUtils;
 import com.lmaye.ms.core.validator.ValidateErrors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
@@ -30,8 +29,7 @@ import java.util.Set;
  * @since 2019/6/12 22:13 星期三
  */
 @Slf4j
-@ResponseBody
-@ControllerAdvice
+@RestControllerAdvice
 public class GlobalExceptionHandler {
     /**
      * 所有异常处理

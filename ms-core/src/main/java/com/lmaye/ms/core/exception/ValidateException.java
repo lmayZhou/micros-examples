@@ -17,12 +17,12 @@ public class ValidateException extends RuntimeException {
     private IResultCode resultCode;
 
     public ValidateException(IResultCode resultCode) {
-        super(resultCode.getPropKey());
+        super(resultCode.getKey());
         this.resultCode = resultCode;
     }
 
     public ValidateException(IResultCode resultCode, Throwable cause) {
-        super(resultCode.getPropKey(), cause);
+        super(resultCode.getKey(), cause);
         this.resultCode = resultCode;
     }
 

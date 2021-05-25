@@ -17,6 +17,8 @@
 
     <!-- Starter Modules -->
     <modules>
+        <!-- Canal Starter -->
+        <module>ms-starter-canal</module>
         <!-- Elasticsearch Starter -->
         <module>ms-starter-elasticsearch</module>
         <!-- JWT Starter -->
