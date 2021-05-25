@@ -34,7 +34,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
      */
     private static final String PUBLIC_KEY = "public.key";
 
-    /***
+    /**
      * 定义JwtTokenStore
      *
      * @param jwtAccessTokenConverter JwtAccessTokenConverter
@@ -45,7 +45,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         return new JwtTokenStore(jwtAccessTokenConverter);
     }
 
-    /***
+    /**
      * 定义JwtAccessTokenConverter用来校验令牌
      *
      * @return JwtAccessTokenConverter
@@ -80,7 +80,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .accessDeniedHandler(new CustomAccessDeniedHandler());
     }
 
-    /***
+    /**
      * Http安全配置，对每个到达系统的http请求链接进行校验
      *
      * @param http HttpSecurity
