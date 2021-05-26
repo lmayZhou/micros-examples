@@ -30,8 +30,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static com.google.common.collect.Lists.newArrayList;
-
 /**
  * -- Swagger Auto Configuration
  *
@@ -40,11 +38,11 @@ import static com.google.common.collect.Lists.newArrayList;
  * @email lmay@lmaye.com
  * @since 2020/7/5 10:28 星期日
  */
+@EnableSwagger2
 @Configuration
 @Profile({"dev", "test"})
 @ConditionalOnProperty(value = "enabled", prefix = "swagger", havingValue = "true")
 @EnableConfigurationProperties(SwaggerProperties.class)
-@EnableSwagger2
 public class SwaggerAutoConfiguration implements BeanFactoryAware {
     private BeanFactory beanFactory;
 
@@ -248,16 +246,13 @@ public class SwaggerAutoConfiguration implements BeanFactoryAware {
         if (Objects.isNull(globalOperationParameters)) {
             return parameters;
         }
-        for (SwaggerProperties.GlobalOperationParameter globalOperationParameter : globalOperationParameters) {
-            parameters.add(new ParameterBuilder()
-                    .name(globalOperationParameter.getName())
-                    .description(globalOperationParameter.getDescription())
-                    .modelRef(new ModelRef(globalOperationParameter.getModelRef()))
-                    .parameterType(globalOperationParameter.getParameterType())
-                    .required(Boolean.parseBoolean(globalOperationParameter.getRequired()))
-                    .build());
-        }
-        return parameters;
+        return globalOperationParameters.stream().map(globalOperationParameter -> new ParameterBuilder()
+                .name(globalOperationParameter.getName())
+                .description(globalOperationParameter.getDescription())
+                .modelRef(new ModelRef(globalOperationParameter.getModelRef()))
+                .parameterType(globalOperationParameter.getParameterType())
+                .required(Boolean.parseBoolean(globalOperationParameter.getRequired()))
+                .build()).collect(Collectors.toList());
     }
 
     /**
@@ -276,7 +271,7 @@ public class SwaggerAutoConfiguration implements BeanFactoryAware {
         Set<String> docketNames = docketOperationParameters.stream()
                 .map(SwaggerProperties.GlobalOperationParameter::getName)
                 .collect(Collectors.toSet());
-        List<SwaggerProperties.GlobalOperationParameter> resultOperationParameters = newArrayList();
+        List<SwaggerProperties.GlobalOperationParameter> resultOperationParameters = new ArrayList<>();
         if (Objects.nonNull(globalOperationParameters)) {
             for (SwaggerProperties.GlobalOperationParameter parameter : globalOperationParameters) {
                 if (!docketNames.contains(parameter.getName())) {
@@ -320,20 +315,17 @@ public class SwaggerAutoConfiguration implements BeanFactoryAware {
     /**
      * 获取返回消息体列表
      *
-     * @param globalResponseMessageBodyList 全局Code消息返回集合
+     * @param responseMessageBodies 全局Code消息返回集合
      * @return List<ResponseMessage>
      */
-    private List<ResponseMessage> getResponseMessageList
-    (List<SwaggerProperties.GlobalResponseMessageBody> globalResponseMessageBodyList) {
-        List<ResponseMessage> responseMessages = new ArrayList<>();
-        for (SwaggerProperties.GlobalResponseMessageBody globalResponseMessageBody : globalResponseMessageBodyList) {
+    private List<ResponseMessage> getResponseMessageList(List<SwaggerProperties.GlobalResponseMessageBody> responseMessageBodies) {
+        return responseMessageBodies.stream().map(globalResponseMessageBody -> {
             ResponseMessageBuilder responseMessageBuilder = new ResponseMessageBuilder();
             responseMessageBuilder.code(globalResponseMessageBody.getCode()).message(globalResponseMessageBody.getMessage());
             if (!StringUtils.isEmpty(globalResponseMessageBody.getModelRef())) {
                 responseMessageBuilder.responseModel(new ModelRef(globalResponseMessageBody.getModelRef()));
             }
-            responseMessages.add(responseMessageBuilder.build());
-        }
-        return responseMessages;
+            return responseMessageBuilder.build();
+        }).collect(Collectors.toList());
     }
 }
