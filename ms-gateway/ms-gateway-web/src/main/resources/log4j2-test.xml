@@ -4,7 +4,7 @@
     <!--定义变量 -->
     <Properties>
         <Property name="app">ms-gateway-web</Property>
-        <Property name="log.path">/home/service/logs/${app}</Property>
+        <Property name="log.path">./logs/${app}</Property>
     </Properties>
     <!--先定义所有的appender -->
     <Appenders>

@@ -4,7 +4,7 @@
     <!--定义变量 -->
     <Properties>
         <Property name="app">ms-service-file</Property>
-        <Property name="log.path">/home/service/logs/${app}</Property>
+        <Property name="log.path">./logs/${app}</Property>
     </Properties>
 
     <Appenders>
