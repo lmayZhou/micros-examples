@@ -65,7 +65,7 @@ public class MyBatisServiceImpl<M extends IMyBatisRepository<T>, T, ID extends S
             }
             return entity;
         } catch (Exception e) {
-            throw new ServiceException(ResultCode.OPERATION_FAILED, e);
+            throw new ServiceException(ResultCode.FAILURE, e);
         }
     }
 
@@ -87,7 +87,7 @@ public class MyBatisServiceImpl<M extends IMyBatisRepository<T>, T, ID extends S
             }
             return entities;
         } catch (Exception e) {
-            throw new ServiceException(ResultCode.OPERATION_FAILED, e);
+            throw new ServiceException(ResultCode.FAILURE, e);
         }
     }
 
@@ -96,7 +96,7 @@ public class MyBatisServiceImpl<M extends IMyBatisRepository<T>, T, ID extends S
         try {
             removeById(id);
         } catch (Exception e) {
-            throw new ServiceException(ResultCode.OPERATION_FAILED, e);
+            throw new ServiceException(ResultCode.FAILURE, e);
         }
     }
 
@@ -105,7 +105,7 @@ public class MyBatisServiceImpl<M extends IMyBatisRepository<T>, T, ID extends S
         try {
             return Optional.ofNullable(getById(id));
         } catch (Exception e) {
-            throw new ServiceException(ResultCode.OPERATION_FAILED, e);
+            throw new ServiceException(ResultCode.FAILURE, e);
         }
     }
 
@@ -117,7 +117,7 @@ public class MyBatisServiceImpl<M extends IMyBatisRepository<T>, T, ID extends S
             }
             return super.list(MyBatisUtils.convert(query));
         } catch (Exception e) {
-            throw new ServiceException(ResultCode.OPERATION_FAILED, e);
+            throw new ServiceException(ResultCode.FAILURE, e);
         }
     }
 
@@ -139,7 +139,7 @@ public class MyBatisServiceImpl<M extends IMyBatisRepository<T>, T, ID extends S
             QueryWrapper<T> queryWrapper = getQueryWrapper(query.getQuery(), query.getSort());
             return super.list(queryWrapper);
         } catch (Exception e) {
-            throw new ServiceException(ResultCode.OPERATION_FAILED, e);
+            throw new ServiceException(ResultCode.FAILURE, e);
         }
     }
 
@@ -165,7 +165,7 @@ public class MyBatisServiceImpl<M extends IMyBatisRepository<T>, T, ID extends S
             return new PageResult<T>().setPageIndex(page.getCurrent()).setPageSize(page.getSize())
                     .setPages(page.getPages()).setTotal(page.getTotal()).setRecords(page.getRecords());
         } catch (Exception e) {
-            throw new ServiceException(ResultCode.OPERATION_FAILED, e);
+            throw new ServiceException(ResultCode.FAILURE, e);
         }
     }
 
@@ -177,7 +177,7 @@ public class MyBatisServiceImpl<M extends IMyBatisRepository<T>, T, ID extends S
             }
             return super.count(MyBatisUtils.convert(query));
         } catch (Exception e) {
-            throw new ServiceException(ResultCode.OPERATION_FAILED, e);
+            throw new ServiceException(ResultCode.FAILURE, e);
         }
     }
 
