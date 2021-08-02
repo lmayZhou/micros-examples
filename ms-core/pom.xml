@@ -28,7 +28,7 @@
         <error_prone_annotations.version>2.3.3</error_prone_annotations.version>
         <springfox-swagger2.version>2.9.2</springfox-swagger2.version>
         <hutool.version>5.1.0</hutool.version>
-        <antisamy.version>1.5.8</antisamy.version>
+        <antisamy.version>1.6.4</antisamy.version>
         <ip2region.version>1.7.2</ip2region.version>
     </properties>
 
