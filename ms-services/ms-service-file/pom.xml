@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <artifactId>ms-service-file</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
     <name>ms-service-file</name>
     <packaging>jar</packaging>
     <description>Microservice File Service project for Spring Boot</description>
@@ -12,7 +12,7 @@
     <parent>
         <groupId>com.lmaye</groupId>
         <artifactId>ms-services</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>1.0.1-SNAPSHOT</version>
     </parent>
 
     <!-- Properties -->
@@ -27,7 +27,7 @@
         <!-- Microservice MinIO Starter -->
         <dependency>
             <groupId>com.lmaye</groupId>
-            <artifactId>ms-starter-minio</artifactId>
+            <artifactId>lms-cloud-starter-minio</artifactId>
         </dependency>
     </dependencies>
 </project>

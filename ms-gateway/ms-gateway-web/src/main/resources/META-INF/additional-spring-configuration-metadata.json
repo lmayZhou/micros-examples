@@ -1,0 +1,28 @@
+{
+  "properties": [
+    {
+      "name": "gateway-auth.authorizeToken",
+      "type": "java.lang.String",
+      "sourceType": "com.hellotech.cloud.gateway.properties.AuthProperties",
+      "description": "Description for gateway-auth.authorizeToken.",
+      "defaultValue": "Authorization"
+    },
+    {
+      "name": "gateway-auth.excludeUrls",
+      "type": "java.util.List",
+      "sourceType": "com.hellotech.cloud.gateway.properties.AuthProperties",
+      "description": "Description for gateway-auth.excludeUrls.",
+      "defaultValue": ""
+    },
+    {
+      "name": "gateway-auth.oauthLogin",
+      "type": "java.lang.String",
+      "sourceType": "com.hellotech.cloud.gateway.properties.AuthProperties",
+      "description": "Description for gateway-auth.oauthLogin.",
+      "defaultValue": ""
+    }
+  ],
+  "hints": [
+
+  ]
+}

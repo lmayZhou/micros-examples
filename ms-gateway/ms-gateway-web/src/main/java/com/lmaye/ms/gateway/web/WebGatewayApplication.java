@@ -2,6 +2,7 @@ package com.lmaye.ms.gateway.web;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
@@ -15,6 +16,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
+@EnableConfigurationProperties(AuthProperties.class)
 public class WebGatewayApplication {
     public static void main(String[] args) {
         SpringApplication.run(WebGatewayApplication.class, args);

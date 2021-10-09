@@ -1,10 +1,40 @@
-# 服务端口
-server:
-  port: 80
+web:
+  # I18n 国际化
+  i18n:
+    # 是否启用
+    enabled: true
+    # 自定义国际化参数名称( ?locale=en_US || 请求头 ), 默认使用请求头参数( Accept-Language )。路径参数优先
+    localeName: language
+    # local分隔符, 与 localeName 组合使用
+    localeDelimiter: "_"
 
-# Spring 配置
-spring:
-  application:
-    name: web-gateway
-  profiles:
-    active: dev
+# feign配置
+feign:
+  # 开启熔断机制
+#  hystrix:
+#    enabled: true
+  sentinel:
+    enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    shutdown:
+      enabled: true
+    gateway:
+      enabled: true
+    prometheus:
+      enabled: true
+  metrics:
+    tags:
+      application: ${spring.application.name}
+    export:
+      simple:
+        enabled: false
+
+# 日志配置
+logging:
+  config: classpath:log4j2-@profile.active@.xml

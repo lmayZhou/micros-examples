@@ -1,14 +1,21 @@
+# 服务端口
+server:
+  port: 80
+
+# Spring 配置
 spring:
-  cloud:
-    # Nacos 注册中心
-    nacos:
-      discovery:
-        enabled: true
-        register-enabled: true
-#        server-addr: 192.168.30.180:8848
-        server-addr: 192.168.0.10:8848
-#        namespace: a6b8fdfd-14b4-4264-94fc-9d41b92a7035
-        namespace: 7fbd94b1-686e-4270-b148-d50e4b2ce64c
+  # Redis
+  redis:
+    host: ${REDIS_HOST:lms-redis}
+    port: 6379
+    password: 123456
+    timeout: 100ms
+    jedis:
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: -1ms
+        min-idle: 0
     # 网关
     gateway:
       globalcors:
@@ -35,7 +42,22 @@ spring:
 #            - PrefixPath=/user
             - StripPrefix=1
 
-management:
-  endpoint:
-    gateway:
-      enabled: true
+# 网关认证配置
+gateway-auth:
+  # Token 标识
+  authorizeToken: Authorization
+  # 放行的请求路径(eg: /api/shopify-plugin/category/list)
+  excludeUrls:
+    - /*/doc.html
+    - /*/v3/api-docs
+    - /**/doc.html
+    - /**/swagger-resources
+    - /**/swagger/**
+    - /**/v2/api-docs
+    - /**/*.js
+    - /**/*.css
+    - /**/*.png
+    - /**/*.ico
+    - /**/webjars/springfox-swagger-ui/**
+  # 认证登录地址
+  oauthLogin: http://localhost:9088/login

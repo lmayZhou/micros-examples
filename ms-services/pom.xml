@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <artifactId>ms-services</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
     <name>ms-services</name>
     <packaging>pom</packaging>
     <description>Microservice Services project for Spring Boot</description>
@@ -12,7 +12,7 @@
     <parent>
         <groupId>com.lmaye</groupId>
         <artifactId>micros-examples</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>1.0.1-SNAPSHOT</version>
     </parent>
 
     <!-- Services Modules -->
@@ -30,20 +30,19 @@
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <disruptor.version>3.4.2</disruptor.version>
     </properties>
 
     <!-- Dependencies -->
     <dependencies>
-        <!-- Microservice core -->
+        <!-- LMS Cloud Web Starter -->
         <dependency>
             <groupId>com.lmaye</groupId>
-            <artifactId>ms-core</artifactId>
+            <artifactId>lms-cloud-starter-web</artifactId>
         </dependency>
-        <!-- Microservice Swagger Starter -->
+        <!-- LMS Cloud Swagger Starter -->
         <dependency>
             <groupId>com.lmaye</groupId>
-            <artifactId>ms-starter-swagger</artifactId>
+            <artifactId>lms-cloud-starter-swagger</artifactId>
         </dependency>
         <!-- Spring Boot Starter -->
         <dependency>
@@ -65,6 +64,7 @@
         <dependency>
             <groupId>com.lmax</groupId>
             <artifactId>disruptor</artifactId>
+            <version>${disruptor.version}</version>
         </dependency>
         <!-- Webflux -->
         <dependency>
@@ -75,33 +75,6 @@
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-        </dependency>
-        <!-- Spring Boot Web -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-undertow</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-tomcat</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <!-- oauth2 -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-oauth2</artifactId>
-        </dependency>
-        <!-- Spring Boot Devtools -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-            <optional>true</optional>
         </dependency>
         <!-- Spring Boot Test -->
         <dependency>
@@ -120,103 +93,117 @@
     <!-- Dependency Management -->
     <dependencyManagement>
         <dependencies>
-            <!-- Microservice core -->
-            <dependency>
-                <groupId>com.lmaye</groupId>
-                <artifactId>ms-core</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
-            </dependency>
-            <!-- Microservice Swagger Starter -->
-            <dependency>
-                <groupId>com.lmaye</groupId>
-                <artifactId>ms-starter-swagger</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
-                <!--
-                compile: 编译依赖范围，默认使用该范围，对于编译、测试、运行三宗classpath都有效。
-                test: 测试依赖范围，只对测试classpath有效
-                provided: 已体提供依赖范围。对于编译和测试classpath有效，运行时无效
-                runtime: 运行时依赖范围。对于测试和运行的claspath有效，编译无效
-                system: 系统依赖范围。和provided依赖范围完全一致。使用system范围的依赖，不许通过systemPath元素显示地制定依赖文件的路径。
-                import: 导入依赖范围。不会对三种classpath产生实际的影响。
-                -->
-                <scope>provided</scope>
-            </dependency>
-            <!-- Microservice Mybatis Starter -->
-            <dependency>
-                <groupId>com.lmaye</groupId>
-                <artifactId>ms-starter-mybatis</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
-                <scope>provided</scope>
-            </dependency>
-            <!-- Microservice MinIO Starter -->
-            <dependency>
-                <groupId>com.lmaye</groupId>
-                <artifactId>ms-starter-minio</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
-                <scope>provided</scope>
-            </dependency>
-            <!-- Microservice Redis Starter -->
-            <dependency>
-                <groupId>com.lmaye</groupId>
-                <artifactId>ms-starter-redis</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
-                <scope>provided</scope>
-            </dependency>
-            <!-- Microservice JWT Starter -->
-            <dependency>
-                <groupId>com.lmaye</groupId>
-                <artifactId>ms-starter-jwt</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
-                <scope>provided</scope>
-            </dependency>
-            <!-- Microservice RabbitMQ Starter -->
-            <dependency>
-                <groupId>com.lmaye</groupId>
-                <artifactId>ms-starter-rabbitmq</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
-                <scope>provided</scope>
-            </dependency>
-            <!-- Microservice Elasticsearch Starter -->
-            <dependency>
-                <groupId>com.lmaye</groupId>
-                <artifactId>ms-starter-elasticsearch</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
-                <scope>provided</scope>
-            </dependency>
             <!-- Microservice Services Api -->
             <dependency>
                 <groupId>com.lmaye</groupId>
                 <artifactId>ms-services-api</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>1.0.1-SNAPSHOT</version>
                 <scope>provided</scope>
-            </dependency>
-            <!-- 异步日志 -->
-            <dependency>
-                <groupId>com.lmax</groupId>
-                <artifactId>disruptor</artifactId>
-                <version>${disruptor.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
 
+    <!-- build -->
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.5</version>
-                <configuration>
-                    <encoding>${project.build.sourceEncoding}</encoding>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                </configuration>
-            </plugin>
+        <finalName>${project.name}</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
 
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot.version}</version>
-            </plugin>
-        </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring-boot.version}</version>
+                    <configuration>
+                        <finalName>${project.build.finalName}</finalName>
+                        <layers>
+                            <enabled>true</enabled>
+                        </layers>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>repackage</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <!-- Maven打包时，跳过当前项目deploy到Maven私服 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>2.8.2</version>
+                    <configuration>
+                        <skip>true</skip>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>io.fabric8</groupId>
+                    <artifactId>docker-maven-plugin</artifactId>
+                    <version>${docker.plugin.version}</version>
+                    <configuration>
+                        <!-- Docker Remote Api-->
+                        <dockerHost>${docker.host}</dockerHost>
+                        <!-- Docker 镜像私服-->
+                        <registry>${docker.registry}</registry>
+                        <!-- 认证信息-->
+                        <authConfig>
+                            <push>
+                                <username>${docker.username}</username>
+                                <password>${docker.password}</password>
+                            </push>
+                        </authConfig>
+                        <images>
+                            <image>
+                                <!-- 镜像名称： 172.17.0.111/library/pig-gateway:2.6.3-->
+                                <name>${docker.registry}/${docker.namespace}/${project.name}:${project.version}</name>
+                                <build>
+                                    <dockerFile>${project.basedir}/Dockerfile</dockerFile>
+                                </build>
+                            </image>
+                        </images>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
+
+    <!-- profiles -->
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <!-- 环境标识，需要与配置文件的名称相对应 -->
+                <profiles.active>dev</profiles.active>
+            </properties>
+
+            <activation>
+                <!-- 默认环境 -->
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+
+        <profile>
+            <id>test</id>
+            <properties>
+                <!-- 环境标识，需要与配置文件的名称相对应 -->
+                <profiles.active>test</profiles.active>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>prod</id>
+            <properties>
+                <!-- 环境标识，需要与配置文件的名称相对应 -->
+                <profiles.active>prod</profiles.active>
+            </properties>
+        </profile>
+    </profiles>
 </project>

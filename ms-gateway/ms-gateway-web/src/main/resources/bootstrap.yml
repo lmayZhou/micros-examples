@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: @name@
+  profiles:
+    active: @profile.active@
+  cloud:
+    nacos:
+      # 服务发现
+      discovery:
+        enabled: true
+        server-addr: ${NACOS_HOST:lms-nacos}:${NACOS_PORT:8848}
+      # 配置中心
+#      config:
+#        enabled: true
+#        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+#        file-extension: yml
+#    # 服务注册,忽略虚拟机IP
+#    inetutils:
+#      ignored-interfaces: [ 'VMware.*' ]
+#      use-only-site-local-interfaces: true

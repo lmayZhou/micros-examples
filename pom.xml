@@ -2,27 +2,22 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.lmaye</groupId>
     <artifactId>micros-examples</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
     <name>micros-examples</name>
     <packaging>pom</packaging>
     <description>Microservice Examples project for Spring Boot</description>
 
     <!-- lookup parent from repository -->
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.2.8.RELEASE</version>
+        <groupId>com.lmaye</groupId>
+        <artifactId>lms-cloud</artifactId>
+        <version>1.0.8</version>
         <relativePath/>
     </parent>
 
     <!-- Project Modules -->
     <modules>
-        <!-- Core 系统核心 -->
-        <module>ms-core</module>
-        <!-- Starter 系统依赖 -->
-        <module>ms-starters</module>
         <!-- Gateway Service -->
         <module>ms-gateway</module>
         <!-- Services 系统服务 -->
@@ -36,30 +31,19 @@
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <spring-boot.version>2.2.8.RELEASE</spring-boot.version>
-        <spring-cloud.version>Hoxton.SR6</spring-cloud.version>
-        <spring-cloud-alibaba.version>2.2.1.RELEASE</spring-cloud-alibaba.version>
+        <docker.plugin.version>0.32.0</docker.plugin.version>
+        <docker.host>http://127.0.0.1:2375</docker.host>
+        <docker.registry>127.0.0.1</docker.registry>
+        <docker.namespace>lms-cloud</docker.namespace>
+        <docker.username>admin</docker.username>
+        <docker.password>123456</docker.password>
+        <disruptor.version>3.4.4</disruptor.version>
     </properties>
 
     <!-- Dependency Management -->
     <dependencyManagement>
         <dependencies>
-            <!-- Spring Cloud 版本系列 -->
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <!-- Spring Cloud Alibaba -->
-            <dependency>
-                <groupId>com.alibaba.cloud</groupId>
-                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>${spring-cloud-alibaba.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
+
         </dependencies>
     </dependencyManagement>
 </project>
