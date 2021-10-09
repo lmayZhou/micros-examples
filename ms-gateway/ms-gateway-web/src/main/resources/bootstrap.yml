@@ -10,10 +10,13 @@ spring:
         enabled: true
         server-addr: ${NACOS_HOST:lms-nacos}:${NACOS_PORT:8848}
       # 配置中心
-#      config:
-#        enabled: true
-#        server-addr: ${spring.cloud.nacos.discovery.server-addr}
-#        file-extension: yml
+      config:
+        enabled: true
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        file-extension: yml
+        # 共享配置
+#        shared-configs:
+#          - application.${spring.cloud.nacos.config.file-extension}
 #    # 服务注册,忽略虚拟机IP
 #    inetutils:
 #      ignored-interfaces: [ 'VMware.*' ]

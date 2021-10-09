@@ -23,12 +23,6 @@
 
     <!-- dependencies -->
     <dependencies>
-        <!-- lombok -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <scope>provided</scope>
-        </dependency>
         <!-- LMS Cloud Core -->
         <dependency>
             <groupId>com.lmaye</groupId>
