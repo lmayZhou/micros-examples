@@ -1,9 +1,15 @@
+# 服务端口
+server:
+  port: 8003
+  servlet:
+    # 请求路径默认
+    context-path: /user
+
 spring:
   # 数据库配置
   datasource:
     name: sys
-#    url: jdbc:mysql://192.168.30.180:3306/ms_user?allowMultiQueries=true&useSSL=false&characterEncoding=utf8
-    url: jdbc:mysql://192.168.0.10:3306/ms_user?allowMultiQueries=true&useSSL=false&characterEncoding=utf8
+    url: jdbc:mysql://${MYSQL_HOST:lms-mysql}:${MYSQL_PORT:3306}/ms_user?allowMultiQueries=true&useSSL=false&characterEncoding=utf8
     username: root
     password: root
     hikari:
@@ -13,35 +19,3 @@ spring:
       connection-timeout: 30000
       idle-timeout: 30000
       connection-test-query: select 1
-  cloud:
-    # Nacos 注册中心
-    nacos:
-      discovery:
-        enabled: true
-        register-enabled: true
-#        server-addr: 192.168.30.180:8848
-        server-addr: 192.168.0.10:8848
-#        namespace: a6b8fdfd-14b4-4264-94fc-9d41b92a7035
-        namespace: 7fbd94b1-686e-4270-b148-d50e4b2ce64c
-
-# Mybatis Plus
-mybatis-plus:
-  mapper-locations: classpath:/mapper/*Mapper.xml
-  type-aliases-package: com.lmaye.ms.services.api.user.entity.*
-  global-config:
-    db-config:
-      id-type: id_worker
-      insert-strategy: not_null
-      update-strategy: not_null
-      select-strategy: not_empty
-      table-underline: true
-      capital-mode: true
-  type-handlers-package: com.lmaye.ms.starter.mybatis.type
-  configuration:
-    jdbc-type-for-null: null
-    map-underscore-to-camel-case: true
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-
-# 日志
-logging:
-  config: classpath:log4j2-dev.xml

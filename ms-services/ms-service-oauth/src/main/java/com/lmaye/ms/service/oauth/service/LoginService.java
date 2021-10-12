@@ -1,6 +1,6 @@
 package com.lmaye.ms.service.oauth.service;
 
-import com.lmaye.ms.core.context.ResultVO;
+import com.lmaye.cloud.starter.web.context.ResultVO;
 import com.lmaye.ms.service.oauth.dto.LoginDTO;
 import com.lmaye.ms.service.oauth.entity.AuthToken;
 

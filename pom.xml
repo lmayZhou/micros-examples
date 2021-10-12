@@ -43,7 +43,12 @@
     <!-- Dependency Management -->
     <dependencyManagement>
         <dependencies>
-
+            <!-- 异步日志 -->
+            <dependency>
+                <groupId>com.lmax</groupId>
+                <artifactId>disruptor</artifactId>
+                <version>${disruptor.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 </project>

@@ -44,6 +44,11 @@
             <groupId>com.lmaye</groupId>
             <artifactId>lms-cloud-starter-swagger</artifactId>
         </dependency>
+        <!-- oauth2 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-oauth2</artifactId>
+        </dependency>
         <!-- Spring Boot Starter -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -64,17 +69,21 @@
         <dependency>
             <groupId>com.lmax</groupId>
             <artifactId>disruptor</artifactId>
-            <version>${disruptor.version}</version>
         </dependency>
         <!-- Webflux -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
-        <!-- Nacos -->
+        <!-- Nacos 注册中心客户端 -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <!-- Nacos 配置中心客户端 -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
         <!-- Spring Boot Test -->
         <dependency>
@@ -98,7 +107,6 @@
                 <groupId>com.lmaye</groupId>
                 <artifactId>ms-services-api</artifactId>
                 <version>1.0.1-SNAPSHOT</version>
-                <scope>provided</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

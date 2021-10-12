@@ -28,13 +28,13 @@
         <!-- Microservice core -->
         <dependency>
             <groupId>com.lmaye</groupId>
-            <artifactId>lms-cloud-core</artifactId>
+            <artifactId>lms-cloud-starter-web</artifactId>
+            <scope>provided</scope>
         </dependency>
         <!-- Mybatis Plus -->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>${mybatis-plus.version}</version>
         </dependency>
         <!--openfeign-->
         <dependency>

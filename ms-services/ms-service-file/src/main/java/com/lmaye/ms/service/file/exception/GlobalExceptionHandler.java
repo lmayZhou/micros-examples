@@ -1,7 +1,7 @@
 package com.lmaye.ms.service.file.exception;
 
-import com.lmaye.ms.core.context.ResultCode;
-import com.lmaye.ms.core.context.ResultVO;
+import com.lmaye.cloud.core.context.ResultCode;
+import com.lmaye.cloud.starter.web.context.ResultVO;
 import com.lmaye.ms.core.exception.CoreException;
 import com.lmaye.ms.core.exception.HandleException;
 import com.lmaye.ms.core.exception.ServiceException;

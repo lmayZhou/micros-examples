@@ -1,9 +1,9 @@
 package com.lmaye.ms.service.file.controller;
 
-import com.lmaye.ms.core.context.ResultVO;
-import com.lmaye.ms.core.context.ResultCode;
+import com.lmaye.cloud.starter.web.context.ResultVO;
+import com.lmaye.cloud.core.context.ResultCode;
 import com.lmaye.ms.core.exception.ServiceException;
-import com.lmaye.ms.starter.minio.service.IMinIoFileStoreService;
+import com.lmaye.cloud.starter.minio.service.IMinIoFileStoreService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

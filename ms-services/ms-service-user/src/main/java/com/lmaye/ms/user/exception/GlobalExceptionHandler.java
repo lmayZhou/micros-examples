@@ -1,4 +1,4 @@
-package com.lmaye.ms.service.oauth.exception;
+package com.lmaye.ms.user.exception;
 
 import com.lmaye.cloud.core.context.ResultCode;
 import com.lmaye.cloud.starter.web.context.ResultVO;

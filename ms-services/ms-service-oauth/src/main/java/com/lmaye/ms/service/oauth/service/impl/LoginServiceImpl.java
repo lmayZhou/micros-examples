@@ -2,8 +2,8 @@ package com.lmaye.ms.service.oauth.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.lmaye.ms.core.constants.CoreConstants;
-import com.lmaye.ms.core.context.ResultCode;
-import com.lmaye.ms.core.context.ResultVO;
+import com.lmaye.cloud.core.context.ResultCode;
+import com.lmaye.cloud.starter.web.context.ResultVO;
 import com.lmaye.ms.core.exception.ServiceException;
 import com.lmaye.ms.service.oauth.context.OAuthResultCode;
 import com.lmaye.ms.service.oauth.dto.LoginDTO;
