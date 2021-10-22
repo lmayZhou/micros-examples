@@ -1,9 +1,6 @@
 # 服务端口
 server:
   port: 8003
-  servlet:
-    # 请求路径默认
-    context-path: /user
 
 spring:
   # 数据库配置

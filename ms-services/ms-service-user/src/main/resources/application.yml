@@ -30,7 +30,7 @@ swagger:
   description: LmayE Software, Inc.
   version: 1.0.1
   termsOfServiceUrl: https://www.lmaye.com
-  basePackage: com.lmaye.ms.*.controller
+  basePackage: com.lmaye.ms
   basePath: /**
   excludePath: /error
   contact:
@@ -44,6 +44,23 @@ swagger:
       name: Authorization
       parameterType: header
       required: false
+
+# 资源客户端, 访问放行路径
+security:
+  oauth2:
+    resource:
+      ignore-uris:
+        - /doc.html
+        - /swagger-ui.html
+        - /v2/api-docs
+        - /swagger-resources
+        - /swagger-resources/configuration/**
+        - /webjars/**
+        - /v3/api-docs
+        - /swagger-ui/**
+        - /actuator/**
+        - /instances/**
+        - /run
 
 # 日志
 logging:

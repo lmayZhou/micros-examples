@@ -45,9 +45,20 @@
             <artifactId>lms-cloud-starter-swagger</artifactId>
         </dependency>
         <!-- oauth2 -->
-        <dependency>
+        <!--<dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-oauth2</artifactId>
+            <version>2.2.5.RELEASE</version>
+        </dependency>
+        &lt;!&ndash; security &ndash;&gt;
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>-->
+        <!-- Spring Cloud Bootstrap 解决 bootstrap.yml 不生效-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
         </dependency>
         <!-- Spring Boot Starter -->
         <dependency>
@@ -189,7 +200,7 @@
             <id>dev</id>
             <properties>
                 <!-- 环境标识，需要与配置文件的名称相对应 -->
-                <profiles.active>dev</profiles.active>
+                <profile.active>dev</profile.active>
             </properties>
 
             <activation>
@@ -202,7 +213,7 @@
             <id>test</id>
             <properties>
                 <!-- 环境标识，需要与配置文件的名称相对应 -->
-                <profiles.active>test</profiles.active>
+                <profile.active>test</profile.active>
             </properties>
         </profile>
 
@@ -210,7 +221,7 @@
             <id>prod</id>
             <properties>
                 <!-- 环境标识，需要与配置文件的名称相对应 -->
-                <profiles.active>prod</profiles.active>
+                <profile.active>prod</profile.active>
             </properties>
         </profile>
     </profiles>

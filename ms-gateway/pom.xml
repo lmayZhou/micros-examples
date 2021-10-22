@@ -35,7 +35,7 @@
             <groupId>com.lmaye</groupId>
             <artifactId>lms-cloud-core</artifactId>
         </dependency>
-        <!-- Spring Cloud Bootstrap -->
+        <!-- Spring Cloud Bootstrap 解决 bootstrap.yml 不生效-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bootstrap</artifactId>

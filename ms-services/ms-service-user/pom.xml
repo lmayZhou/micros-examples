@@ -15,16 +15,14 @@
         <version>1.0.1-SNAPSHOT</version>
     </parent>
 
-    <!-- Properties -->
-    <properties>
-        <java.version>1.8</java.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    </properties>
-
     <!-- Dependencies -->
     <dependencies>
-        <!-- Microservice Mybatis Starter -->
+        <!-- LMS Cloud OAuth2 Resource Starter -->
+        <dependency>
+            <groupId>com.lmaye</groupId>
+            <artifactId>lms-cloud-starter-oauth2-resource</artifactId>
+        </dependency>
+        <!-- LMS Cloud MyBatis Starter -->
         <dependency>
             <groupId>com.lmaye</groupId>
             <artifactId>lms-cloud-starter-mybatis</artifactId>
@@ -35,4 +33,19 @@
             <artifactId>ms-services-api</artifactId>
         </dependency>
     </dependencies>
+
+    <!-- build -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>

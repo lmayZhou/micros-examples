@@ -1,13 +1,14 @@
 package com.lmaye.ms.user.controller;
 
-import com.lmaye.cloud.starter.web.context.ResultVO;
-import com.lmaye.ms.core.query.Query;
-import com.lmaye.ms.core.query.TermQuery;
-import com.lmaye.ms.user.service.ISysUserService;
-import com.lmaye.ms.services.api.user.entity.SysUser;
 import com.lmaye.cloud.starter.mybatis.utils.MyBatisUtils;
+import com.lmaye.cloud.starter.web.context.ResultVO;
+import com.lmaye.cloud.starter.web.query.Query;
+import com.lmaye.cloud.starter.web.query.TermQuery;
+import com.lmaye.ms.services.api.user.entity.SysUser;
+import com.lmaye.ms.user.service.ISysUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
@@ -21,18 +22,15 @@ import java.util.Collections;
  * @email lmay@lmaye.com
  * @since 2020/7/5 13:22 星期日
  */
+@AllArgsConstructor
 @RestController
-//@RequestMapping("/user")
+@RequestMapping("/user")
 @Api(tags = "用户相关接口")
 public class UserController {
     /**
      * Sys User Service
      */
     private final ISysUserService sysUserService;
-
-    public UserController(ISysUserService sysUserService) {
-        this.sysUserService = sysUserService;
-    }
 
     /**
      * 获取用户信息
@@ -77,6 +75,6 @@ public class UserController {
     @PostMapping("/save")
     @ApiOperation(value = "新增用户信息", notes = "新增用户信息", response = ResultVO.class)
     public Mono<ResultVO<SysUser>> save(@RequestBody SysUser user) {
-        return Mono.just(ResultVO.success(sysUserService.insertOrUpdate(user)));
+        return Mono.just(ResultVO.success(sysUserService.insert(user).get()));
     }
 }
