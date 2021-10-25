@@ -75,6 +75,6 @@ public class UserController {
     @PostMapping("/save")
     @ApiOperation(value = "新增用户信息", notes = "新增用户信息", response = ResultVO.class)
     public Mono<ResultVO<SysUser>> save(@RequestBody SysUser user) {
-        return Mono.just(ResultVO.success(sysUserService.insert(user).get()));
+        return Mono.just(ResultVO.success(sysUserService.insert(user).orElse(null)));
     }
 }

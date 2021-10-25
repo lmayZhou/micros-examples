@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @date 2020/12/25 12:10
  * @email lmay@lmaye.com
  */
-@FeignClient(name="user-service")
+@FeignClient(name="ms-service-user")
 @RequestMapping("/user")
 public interface UserFeign {
     /**
@@ -25,5 +25,5 @@ public interface UserFeign {
      * @return ResultVO<SysUser>
      */
     @GetMapping("/queryByUserName/{username}")
-    ResultVO<SysUser> queryByUserName(@PathVariable String username);
+    ResultVO<SysUser> queryByUserName(@PathVariable("username") String username);
 }

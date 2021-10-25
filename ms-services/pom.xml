@@ -44,17 +44,6 @@
             <groupId>com.lmaye</groupId>
             <artifactId>lms-cloud-starter-swagger</artifactId>
         </dependency>
-        <!-- oauth2 -->
-        <!--<dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-oauth2</artifactId>
-            <version>2.2.5.RELEASE</version>
-        </dependency>
-        &lt;!&ndash; security &ndash;&gt;
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>-->
         <!-- Spring Cloud Bootstrap 解决 bootstrap.yml 不生效-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -96,6 +85,11 @@
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
+        <!-- 服务监控 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
         <!-- Spring Boot Test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -128,6 +122,17 @@
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <!-- 排除私钥 -->
+                    <exclude>ms-service-oauth.jks</exclude>
+                </excludes>
                 <filtering>true</filtering>
             </resource>
         </resources>

@@ -15,21 +15,14 @@
         <version>1.0.1-SNAPSHOT</version>
     </parent>
 
-    <!-- Properties -->
-    <properties>
-        <java.version>1.8</java.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    </properties>
-
     <!-- Dependencies -->
     <dependencies>
-        <!-- Microservice Mybatis Starter -->
+        <!-- LMS Cloud Mybatis Starter -->
         <dependency>
             <groupId>com.lmaye</groupId>
             <artifactId>lms-cloud-starter-mybatis</artifactId>
         </dependency>
-        <!-- Microservice Redis Starter -->
+        <!-- LMS Cloud Redis Starter -->
         <dependency>
             <groupId>com.lmaye</groupId>
             <artifactId>lms-cloud-starter-redis</artifactId>
@@ -39,37 +32,45 @@
             <groupId>com.lmaye</groupId>
             <artifactId>ms-services-api</artifactId>
         </dependency>
-        <!-- oauth2 -->
+        <!-- OAuth2 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-oauth2</artifactId>
             <version>2.2.5.RELEASE</version>
         </dependency>
-        <!-- security -->
+        <!-- Security -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-actuator-autoconfigure</artifactId>
-            <optional>true</optional>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <!-- spring-session Session集群共享 -->
+        <!-- Spring Session 集群共享 -->
         <dependency>
             <groupId>org.springframework.session</groupId>
             <artifactId>spring-session-core</artifactId>
         </dependency>
-
+        <!-- No Feign Client for loadBalancing defined. Did you forget to include spring-cloud-starter-loadbalancer? -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-loadbalancer</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
     </dependencies>
+
+    <!-- build -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>

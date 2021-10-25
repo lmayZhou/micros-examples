@@ -1,34 +1,69 @@
-# 服务端口
-server:
-  port: 8002
-
 # Spring 配置
 spring:
-  application:
-    name: oauth2-service
+  main:
+    allow-bean-definition-overriding: true
   servlet:
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
-  profiles:
-    active: dev
+
+# Mybatis Plus
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  type-aliases-package: com.lmaye.ms.*.entity.*
+  global-config:
+    db-config:
+      id-type: ASSIGN_ID
+      insert-strategy: not_null
+      update-strategy: not_null
+      select-strategy: not_empty
+      table-underline: true
+      capital-mode: true
+  type-handlers-package: com.lmaye.cloud.starter.mybatis.type
+  configuration:
+    jdbc-type-for-null: null
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 # Swagger 配置
 swagger:
   enabled: true
-  title: Microservice 用户授权认证-在线接口文档
-  description: Microservice 用户授权认证-在线接口文档
+  title: Microservice API-在线接口文档
+  description: LmayE Software, Inc.
   version: 1.0.1
   termsOfServiceUrl: https://www.lmaye.com
-  basePackage: com.lmaye.ms.service.oauth.controller
+  basePackage: com.lmaye.ms
   basePath: /**
+  excludePath: /error
   contact:
     email: lmay@lmaye.com
     name: lmay Zhou
     url: https://www.lmaye.com
-  globalOperationParameters:
+  globalRequestParameters:
     - description: 凭证
-      modelRef: string
+      modelType: string
+      modelFormat:
       name: Authorization
       parameterType: header
       required: false
+
+# 资源客户端, 访问放行路径
+security:
+  oauth2:
+    resource:
+      ignore-uris:
+        - /doc.html
+        - /swagger-ui.html
+        - /v2/api-docs
+        - /swagger-resources
+        - /swagger-resources/configuration/**
+        - /webjars/**
+        - /v3/api-docs
+        - /swagger-ui/**
+        - /actuator/**
+        - /instances/**
+        - /run
+
+# 日志
+logging:
+  config: classpath:log4j2-@profile.active@.xml

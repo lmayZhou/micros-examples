@@ -1,6 +1,6 @@
 package com.lmaye.ms.service.oauth.utils;
 
-import com.alibaba.fastjson.JSON;
+import com.lmaye.cloud.core.utils.GsonUtils;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.jwt.Jwt;
 import org.springframework.security.jwt.JwtHelper;
@@ -35,7 +35,7 @@ public final class AdminTokenUtils {
         // 获取私钥
         RSAPrivateKey privateKey = (RSAPrivateKey) keyPair.getPrivate();
         // 创建令牌
-        Jwt jwt = JwtHelper.encode(JSON.toJSONString(payload), new RsaSigner(privateKey));
+        Jwt jwt = JwtHelper.encode(GsonUtils.toJson(payload), new RsaSigner(privateKey));
         return jwt.getEncoded();
     }
 }

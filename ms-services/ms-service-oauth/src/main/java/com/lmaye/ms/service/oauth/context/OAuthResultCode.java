@@ -1,6 +1,6 @@
 package com.lmaye.ms.service.oauth.context;
 
-import com.lmaye.ms.core.context.IResultCode;
+import com.lmaye.cloud.core.context.IResultCode;
 
 /**
  * -- 响应编码

@@ -1,7 +1,7 @@
 package com.lmaye.ms.service.oauth.controller;
 
 import com.lmaye.ms.service.oauth.utils.IdentCode;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

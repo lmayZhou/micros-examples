@@ -1,10 +1,10 @@
 package com.lmaye.ms.service.oauth.service.impl;
 
-import com.alibaba.fastjson.JSONObject;
-import com.lmaye.ms.core.constants.CoreConstants;
+import cn.hutool.json.JSONObject;
 import com.lmaye.cloud.core.context.ResultCode;
+import com.lmaye.cloud.core.exception.ServiceException;
 import com.lmaye.cloud.starter.web.context.ResultVO;
-import com.lmaye.ms.core.exception.ServiceException;
+import com.lmaye.ms.service.oauth.constants.OauthConstants;
 import com.lmaye.ms.service.oauth.context.OAuthResultCode;
 import com.lmaye.ms.service.oauth.dto.LoginDTO;
 import com.lmaye.ms.service.oauth.entity.AuthToken;
@@ -107,14 +107,14 @@ public class LoginServiceImpl implements LoginService {
             SysUser user = result.getData();
             if (Objects.isNull(user) || !passwordEncoder.matches(password, user.getPassword())) {
                 // 用户密码错误
-                String key = CoreConstants.ENABLE_CAPTCHA_KEY_PREFIX + username;
+                String key = OauthConstants.ENABLE_CAPTCHA_KEY_PREFIX + username;
                 Boolean hasKey = redisTemplate.hasKey(key);
                 if (!Objects.isNull(hasKey) && !hasKey) {
                     redisTemplate.opsForValue().set(key, 1, 1, TimeUnit.HOURS);
                 } else {
                     redisTemplate.opsForValue().increment(key);
                     Object total = redisTemplate.opsForValue().get(key);
-                    if (!Objects.isNull(total) && Integer.parseInt(total.toString()) >= CoreConstants.TRY_TIMES) {
+                    if (!Objects.isNull(total) && Integer.parseInt(total.toString()) >= OauthConstants.TRY_TIMES) {
                         authToken.setEnableCaptcha(true);
                     }
                 }
@@ -140,11 +140,11 @@ public class LoginServiceImpl implements LoginService {
             if (Objects.isNull(body)) {
                 throw new ServiceException(ResultCode.UNAUTHORIZED);
             }
-            authToken.setJti(body.getString("jti"));
-            authToken.setAccessToken(body.getString("access_token"));
-            authToken.setRefreshToken(body.getString("refresh_token"));
-            authToken.setExpiresIn(body.getInteger("expires_in"));
-            authToken.setTokenType(body.getString("token_type"));
+            authToken.setJti(body.getStr("jti"));
+            authToken.setAccessToken(body.getStr("access_token"));
+            authToken.setRefreshToken(body.getStr("refresh_token"));
+            authToken.setExpiresIn(body.getInt("expires_in"));
+            authToken.setTokenType(body.getStr("token_type"));
             // 设置到cookie中
             saveCookie(authToken.getAccessToken());
             return ResultVO.success(authToken);
