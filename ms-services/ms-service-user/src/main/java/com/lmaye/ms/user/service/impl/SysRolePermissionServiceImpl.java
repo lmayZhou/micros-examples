@@ -2,7 +2,7 @@ package com.lmaye.ms.user.service.impl;
 
 import com.lmaye.ms.user.repository.SysRolePermissionRepository;
 import com.lmaye.ms.user.service.ISysRolePermissionService;
-import com.lmaye.ms.services.api.user.entity.SysRolePermission;
+import com.lmaye.ms.service.user.api.entity.SysRolePermission;
 import com.lmaye.cloud.starter.mybatis.service.impl.MyBatisServiceImpl;
 import org.springframework.stereotype.Service;
 

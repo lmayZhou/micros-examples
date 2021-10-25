@@ -1,7 +1,7 @@
-package com.lmaye.ms.services.api.user.feign;
+package com.lmaye.ms.service.user.api;
 
 import com.lmaye.cloud.starter.web.context.ResultVO;
-import com.lmaye.ms.services.api.user.entity.SysUser;
+import com.lmaye.ms.service.user.api.entity.SysUser;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

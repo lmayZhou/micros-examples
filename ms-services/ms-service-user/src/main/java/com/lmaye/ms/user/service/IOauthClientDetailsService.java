@@ -1,6 +1,6 @@
 package com.lmaye.ms.user.service;
 
-import com.lmaye.ms.services.api.user.entity.OauthClientDetails;
+import com.lmaye.ms.service.user.api.entity.OauthClientDetails;
 import com.lmaye.cloud.starter.mybatis.service.IMyBatisService;
 
 /**

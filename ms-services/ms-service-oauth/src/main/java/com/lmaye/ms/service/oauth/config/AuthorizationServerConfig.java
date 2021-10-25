@@ -65,9 +65,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
      */
     @Bean
     public TokenStore tokenStore() {
-        //基于session认证
+        // 基于session认证
         //return new JdbcTokenStore(dataSource);
-        //基于token认证
+        // 基于jwt token认证
         return new JwtTokenStore(jwtAccessTokenConverter());
     }
 

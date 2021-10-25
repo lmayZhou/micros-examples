@@ -3,7 +3,7 @@ package com.lmaye.ms.user.service.impl;
 import com.lmaye.cloud.starter.mybatis.service.impl.MyBatisServiceImpl;
 import com.lmaye.ms.user.repository.OauthClientDetailsRepository;
 import com.lmaye.ms.user.service.IOauthClientDetailsService;
-import com.lmaye.ms.services.api.user.entity.OauthClientDetails;
+import com.lmaye.ms.service.user.api.entity.OauthClientDetails;
 import org.springframework.stereotype.Service;
 
 /**

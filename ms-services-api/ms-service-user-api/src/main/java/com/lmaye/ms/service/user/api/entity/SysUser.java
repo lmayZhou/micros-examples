@@ -1,4 +1,4 @@
-package com.lmaye.ms.services.api.user.entity;
+package com.lmaye.ms.service.user.api.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 
 /**
  * <p>
- * 角色信息
+ * 用户信息
  * </p>
  *
  * @author Lmay Zhou
@@ -20,8 +20,8 @@ import java.time.LocalDateTime;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@TableName("sys_role")
-public class SysRole implements Serializable {
+@TableName("sys_user")
+public class SysUser implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
@@ -31,28 +31,76 @@ public class SysRole implements Serializable {
     private Long id;
 
     /**
-     * 角色名称
+     * 部门ID
      */
-    @TableField("role_name")
-    private String roleName;
+    @TableField("dept_id")
+    private Long deptId;
 
     /**
-     * 角色权限Code
+     * 客户端ID
      */
-    @TableField("role_key")
-    private String roleKey;
+    @TableField("client_id")
+    private String clientId;
 
     /**
-     * 排序
+     * 用户名
      */
-    @TableField("sort")
-    private Integer sort;
+    @TableField("user_name")
+    private String userName;
 
     /**
-     * 范围(1. 全部数据; 2. 自定义数据; 3. 本部门数据; 4. 本部门及以下数据;)
+     * 密码
      */
-    @TableField("scope")
-    private Boolean scope;
+    @TableField("password")
+    private String password;
+
+    /**
+     * 用户类型(00. 系统用户; 01. 注册用户;)
+     */
+    @TableField("user_type")
+    private String userType;
+
+    /**
+     * 用户邮箱
+     */
+    @TableField("email")
+    private String email;
+
+    /**
+     * 手机号
+     */
+    @TableField("phonenumber")
+    private String phonenumber;
+
+    /**
+     * 性别(0. 男; 1. 女; 2. 未知;)
+     */
+    @TableField("sex")
+    private String sex;
+
+    /**
+     * 头像路径
+     */
+    @TableField("avatar")
+    private String avatar;
+
+    /**
+     * QQ
+     */
+    @TableField("qq")
+    private String qq;
+
+    /**
+     * 微信
+     */
+    @TableField("wechat")
+    private String wechat;
+
+    /**
+     * 微博
+     */
+    @TableField("weibo")
+    private String weibo;
 
     /**
      * 状态(0. 正常; 1. 停用; 2. 删除;)

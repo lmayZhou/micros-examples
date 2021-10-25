@@ -107,10 +107,10 @@
     <!-- Dependency Management -->
     <dependencyManagement>
         <dependencies>
-            <!-- Microservice Services Api -->
+            <!-- Microservice Service User Api -->
             <dependency>
                 <groupId>com.lmaye</groupId>
-                <artifactId>ms-services-api</artifactId>
+                <artifactId>ms-service-user-api</artifactId>
                 <version>1.0.1-SNAPSHOT</version>
             </dependency>
         </dependencies>

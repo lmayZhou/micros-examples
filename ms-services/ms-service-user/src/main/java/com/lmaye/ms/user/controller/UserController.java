@@ -4,7 +4,7 @@ import com.lmaye.cloud.starter.mybatis.utils.MyBatisUtils;
 import com.lmaye.cloud.starter.web.context.ResultVO;
 import com.lmaye.cloud.starter.web.query.Query;
 import com.lmaye.cloud.starter.web.query.TermQuery;
-import com.lmaye.ms.services.api.user.entity.SysUser;
+import com.lmaye.ms.service.user.api.entity.SysUser;
 import com.lmaye.ms.user.service.ISysUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

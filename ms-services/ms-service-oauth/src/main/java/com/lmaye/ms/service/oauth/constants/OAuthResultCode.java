@@ -1,4 +1,4 @@
-package com.lmaye.ms.service.oauth.context;
+package com.lmaye.ms.service.oauth.constants;
 
 import com.lmaye.cloud.core.context.IResultCode;
 

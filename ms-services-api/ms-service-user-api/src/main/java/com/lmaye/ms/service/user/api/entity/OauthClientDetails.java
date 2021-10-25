@@ -1,4 +1,4 @@
-package com.lmaye.ms.services.api.user.entity;
+package com.lmaye.ms.service.user.api.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;

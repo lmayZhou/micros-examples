@@ -2,8 +2,8 @@ package com.lmaye.ms.service.oauth.config;
 
 import com.lmaye.cloud.starter.web.context.ResultVO;
 import com.lmaye.ms.service.oauth.entity.UserToken;
-import com.lmaye.ms.services.api.user.entity.SysUser;
-import com.lmaye.ms.services.api.user.feign.UserFeign;
+import com.lmaye.ms.service.user.api.entity.SysUser;
+import com.lmaye.ms.service.user.api.UserFeign;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;

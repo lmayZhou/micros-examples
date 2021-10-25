@@ -1,4 +1,4 @@
-package com.lmaye.ms.services.api.user.entity;
+package com.lmaye.ms.service.user.api.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 /**
  * <p>
- * 用户角色
+ * 角色权限
  * </p>
  *
  * @author Lmay Zhou
@@ -19,8 +19,8 @@ import java.time.LocalDateTime;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@TableName("sys_user_role")
-public class SysUserRole implements Serializable {
+@TableName("sys_role_permission")
+public class SysRolePermission implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
@@ -30,16 +30,16 @@ public class SysUserRole implements Serializable {
     private Long id;
 
     /**
-     * 用户ID
-     */
-    @TableField("user_id")
-    private Long userId;
-
-    /**
      * 角色ID
      */
     @TableField("role_id")
     private Long roleId;
+
+    /**
+     * 权限id
+     */
+    @TableField("permission_id")
+    private String permissionId;
 
     /**
      * 创建时间

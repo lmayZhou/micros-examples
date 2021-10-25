@@ -1,6 +1,6 @@
 package com.lmaye.ms.user.service;
 
-import com.lmaye.ms.services.api.user.entity.SysUserRole;
+import com.lmaye.ms.service.user.api.entity.SysUserRole;
 import com.lmaye.cloud.starter.mybatis.service.IMyBatisService;
 
 /**

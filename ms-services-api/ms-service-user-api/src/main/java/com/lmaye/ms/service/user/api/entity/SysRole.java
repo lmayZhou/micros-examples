@@ -1,4 +1,4 @@
-package com.lmaye.ms.services.api.user.entity;
+package com.lmaye.ms.service.user.api.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 
 /**
  * <p>
- * 用户信息
+ * 角色信息
  * </p>
  *
  * @author Lmay Zhou
@@ -20,8 +20,8 @@ import java.time.LocalDateTime;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@TableName("sys_user")
-public class SysUser implements Serializable {
+@TableName("sys_role")
+public class SysRole implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
@@ -31,76 +31,28 @@ public class SysUser implements Serializable {
     private Long id;
 
     /**
-     * 部门ID
+     * 角色名称
      */
-    @TableField("dept_id")
-    private Long deptId;
+    @TableField("role_name")
+    private String roleName;
 
     /**
-     * 客户端ID
+     * 角色权限Code
      */
-    @TableField("client_id")
-    private String clientId;
+    @TableField("role_key")
+    private String roleKey;
 
     /**
-     * 用户名
+     * 排序
      */
-    @TableField("user_name")
-    private String userName;
+    @TableField("sort")
+    private Integer sort;
 
     /**
-     * 密码
+     * 范围(1. 全部数据; 2. 自定义数据; 3. 本部门数据; 4. 本部门及以下数据;)
      */
-    @TableField("password")
-    private String password;
-
-    /**
-     * 用户类型(00. 系统用户; 01. 注册用户;)
-     */
-    @TableField("user_type")
-    private String userType;
-
-    /**
-     * 用户邮箱
-     */
-    @TableField("email")
-    private String email;
-
-    /**
-     * 手机号
-     */
-    @TableField("phonenumber")
-    private String phonenumber;
-
-    /**
-     * 性别(0. 男; 1. 女; 2. 未知;)
-     */
-    @TableField("sex")
-    private String sex;
-
-    /**
-     * 头像路径
-     */
-    @TableField("avatar")
-    private String avatar;
-
-    /**
-     * QQ
-     */
-    @TableField("qq")
-    private String qq;
-
-    /**
-     * 微信
-     */
-    @TableField("wechat")
-    private String wechat;
-
-    /**
-     * 微博
-     */
-    @TableField("weibo")
-    private String weibo;
+    @TableField("scope")
+    private Boolean scope;
 
     /**
      * 状态(0. 正常; 1. 停用; 2. 删除;)

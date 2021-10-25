@@ -27,10 +27,10 @@
             <groupId>com.lmaye</groupId>
             <artifactId>lms-cloud-starter-redis</artifactId>
         </dependency>
-        <!-- Microservice Api Services -->
+        <!-- Microservice Service User Api -->
         <dependency>
             <groupId>com.lmaye</groupId>
-            <artifactId>ms-services-api</artifactId>
+            <artifactId>ms-service-user-api</artifactId>
         </dependency>
         <!-- OAuth2 -->
         <dependency>

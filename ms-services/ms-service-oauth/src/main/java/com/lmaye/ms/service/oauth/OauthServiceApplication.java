@@ -16,7 +16,7 @@ import org.springframework.web.client.RestTemplate;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableFeignClients(basePackages = {"com.lmaye.ms.services.api.user.feign"})
+@EnableFeignClients(basePackages = {"com.lmaye.ms.service.*.api"})
 public class OauthServiceApplication {
     public static void main(String[] args) {
         SpringApplication.run(OauthServiceApplication.class, args);
