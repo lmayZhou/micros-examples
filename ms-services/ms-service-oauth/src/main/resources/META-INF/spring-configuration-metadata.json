@@ -1,0 +1,30 @@
+{
+  "groups": [
+    {
+      "name": "oauth",
+      "type": "com.lmaye.ms.service.oauth.properties.OauthProperties",
+      "sourceType": "com.lmaye.ms.service.oauth.properties.OauthProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "oauth.cookie-domain",
+      "type": "java.lang.String",
+      "description": "Cookie站点",
+      "sourceType": "com.lmaye.ms.service.oauth.properties.OauthProperties"
+    },
+    {
+      "name": "oauth.cookie-max-age",
+      "type": "java.lang.Integer",
+      "description": "Cookie生命周期, 以秒为单位",
+      "sourceType": "com.lmaye.ms.service.oauth.properties.OauthProperties"
+    },
+    {
+      "name": "oauth.default-token-url",
+      "type": "java.lang.String",
+      "description": "Spring默认授权地址",
+      "sourceType": "com.lmaye.ms.service.oauth.properties.OauthProperties"
+    }
+  ],
+  "hints": []
+}

@@ -32,13 +32,11 @@ spring:
 #  session:
 #    store-type: redis
 
-# Token存储到Cookies
-auth:
-  ttl: 3600
-  clientId: ms-oauth
-  clientSecret: ms-oauth
+# 项目配置
+oauth:
   cookieDomain: localhost
   cookieMaxAge: -1
+  defaultTokenUrl: http://127.0.0.1:8002/oauth/token
 
 encrypt:
   key-store:

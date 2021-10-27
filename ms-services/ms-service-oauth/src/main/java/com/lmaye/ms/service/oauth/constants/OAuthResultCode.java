@@ -15,7 +15,9 @@ public enum OAuthResultCode implements IResultCode {
     /**
      * 枚举值
      */
-    USER_VERIFICATION_FAILURE(200, "msg.user.verification.error", "用户验证失败");
+    CAPTCHA_ERROR(-1001, "msg.captcha.error", "验证码错误"),
+    CAPTCHA_EMPTY(-1002, "msg.captcha.empty", "请输入验证码"),
+    USER_VERIFICATION_FAILURE(-1003, "msg.user.verification.error", "用户名或密码错误");
 
     /**
      * 枚举编码

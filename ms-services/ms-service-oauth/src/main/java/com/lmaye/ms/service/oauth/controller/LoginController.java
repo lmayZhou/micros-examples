@@ -5,7 +5,6 @@ import com.lmaye.ms.service.oauth.dto.LoginDTO;
 import com.lmaye.ms.service.oauth.entity.AuthToken;
 import com.lmaye.ms.service.oauth.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,18 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/user")
 public class LoginController {
-    /**
-     * Client Id
-     */
-    @Value("${auth.clientId}")
-    private String clientId;
-
-    /**
-     * Client Secret
-     */
-    @Value("${auth.clientSecret}")
-    private String clientSecret;
-
     /**
      * 授权模式: 密码模式
      */
@@ -53,6 +40,6 @@ public class LoginController {
      */
     @PostMapping("/login")
     public ResultVO<AuthToken> login(@RequestBody LoginDTO dto) {
-        return loginService.login(dto, clientId, clientSecret, GRAND_TYPE);
+        return loginService.login(dto, "ms-oauth", "ms-oauth", GRAND_TYPE);
     }
 }

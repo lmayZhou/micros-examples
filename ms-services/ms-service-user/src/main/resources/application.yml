@@ -61,6 +61,8 @@ security:
         - /actuator/**
         - /instances/**
         - /run
+        # 认证查询用户接口
+        - /user/queryByUserName/*
 
 # 日志
 logging:
