@@ -1,6 +1,7 @@
 package com.lmaye.ms.service.oauth.service;
 
 import com.lmaye.cloud.starter.web.context.ResultVO;
+import com.lmaye.ms.service.oauth.constants.GrandType;
 import com.lmaye.ms.service.oauth.dto.LoginDTO;
 import com.lmaye.ms.service.oauth.entity.AuthToken;
 
@@ -22,5 +23,5 @@ public interface LoginService {
      * @param grandType    grandType
      * @return ResultVO<AuthToken>
      */
-    ResultVO<AuthToken> login(LoginDTO dto, String clientId, String clientSecret, String grandType);
+    ResultVO<AuthToken> login(LoginDTO dto, String clientId, String clientSecret, GrandType grandType);
 }

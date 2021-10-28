@@ -1,9 +1,12 @@
 package com.lmaye.ms.service.oauth.controller;
 
 import com.lmaye.cloud.starter.web.context.ResultVO;
+import com.lmaye.ms.service.oauth.constants.GrandType;
 import com.lmaye.ms.service.oauth.dto.LoginDTO;
 import com.lmaye.ms.service.oauth.entity.AuthToken;
 import com.lmaye.ms.service.oauth.service.LoginService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,12 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/user")
+@Api(tags = "登录相关接口")
 public class LoginController {
-    /**
-     * 授权模式: 密码模式
-     */
-    private static final String GRAND_TYPE = "password";
-
     /**
      * Login Service
      */
@@ -39,7 +38,8 @@ public class LoginController {
      * @return ResultVO<AuthToken>
      */
     @PostMapping("/login")
+    @ApiOperation("用户登录")
     public ResultVO<AuthToken> login(@RequestBody LoginDTO dto) {
-        return loginService.login(dto, "ms-oauth", "ms-oauth", GRAND_TYPE);
+        return loginService.login(dto, "ms-oauth", "ms-oauth", GrandType.PASSWORD);
     }
 }

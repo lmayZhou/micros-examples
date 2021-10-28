@@ -163,6 +163,9 @@ $(function () {
     // 登录点击事件
     function sendBtn() {
         if (tab === 'account') {
+            let pubKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAz5I2mLsU15uGzrVSWX1fJxk0DKr5BfZ2ZGfsY9uGeF+0RSkIKj+FoCPUz0qsAjXPdicRQgwPwVf7JK19ydaa/Rx3ph/XQ6Y2GTcgq85GjogbiNF+qOkxKr9wV6G18Q/LVyTZ68agKrArmoI4I+1LeCFqN7cX49Npx5jOmp5n8F3VKud2NUh/SfKuqfCdABwryESQgyjaCFi9VzRcDYotTt9t7UT/LnPiSsvzpJxALzVAFUfYzGFfIrE0bZ147CZlZZbqQOJWGhBRV8stq1Qp9EwpF2dHDSm2x58MwFMSr3ffTJH3RcZeD63WqVmIRRUmCPhrR40fSiLVS7jU24wxBQIDAQAB";
+            let encrypt = new JSEncrypt();
+            encrypt.setPrivateKey(pubKey);
             $(".log-btn").click(function () {
                 // let type = 'phone';
                 let username = $.trim($('#num').val());
@@ -181,7 +184,7 @@ $(function () {
                         contentType: "application/json",
                         dataType: 'json',
                         async: false,
-                        data: JSON.stringify({ "username" : username, "password" : password }),
+                        data: JSON.stringify({ "username" : username, "password" : encrypt.encrypt(password) }),
                         success: function (data) {
                             console.log(data);
                             // window.location.href = "/user/index";

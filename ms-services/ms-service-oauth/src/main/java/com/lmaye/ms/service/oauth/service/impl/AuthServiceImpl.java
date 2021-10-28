@@ -11,6 +11,7 @@ import com.lmaye.ms.service.oauth.dto.AuthDTO;
 import com.lmaye.ms.service.oauth.entity.AuthToken;
 import com.lmaye.ms.service.oauth.properties.OauthProperties;
 import com.lmaye.ms.service.oauth.service.IAuthService;
+import com.lmaye.ms.service.oauth.utils.RsaUtils;
 import com.lmaye.ms.service.user.api.UserFeign;
 import com.lmaye.ms.service.user.api.entity.SysUser;
 import lombok.extern.slf4j.Slf4j;
@@ -225,8 +226,7 @@ public class AuthServiceImpl implements IAuthService {
                                                       String key, String pwd) {
         try {
             // 密码解密
-//            String password = RsaUtils.decrypt(dto.getPassword(), oauthProperties.getPriKey());
-            String password = dto.getPassword();
+            String password = RsaUtils.decrypt(dto.getPassword(), RsaUtils.getKeyPair().get("priKey"));
             Boolean hasKey = redisTemplate.hasKey(key);
             if (!passwordEncoder.matches(password, pwd)) {
                 // 用户密码错误
@@ -254,7 +254,6 @@ public class AuthServiceImpl implements IAuthService {
         } catch (ServiceException e) {
             throw e;
         } catch (Exception e) {
-//            throw new ServiceException(OAuthResultCode.DECRYPT_ERROR, e);
             throw new ServiceException(ResultCode.UNAUTHORIZED, e);
         }
     }

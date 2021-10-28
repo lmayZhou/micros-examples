@@ -43,7 +43,6 @@ public class LoginRedirectController {
         // 用户名
         if (StringUtils.isNotBlank(username)) {
             model.addAttribute("username", username);
-            // TODO 接口数据
             model.addAttribute("enableCaptcha", true);
         }
         // 登录类型
@@ -51,16 +50,27 @@ public class LoginRedirectController {
         return "login";
     }
 
+    /**
+     * 验证码
+     *
+     * @param request  HttpServletRequest
+     * @param response HttpServletResponse
+     */
     @GetMapping("/captcha.jpg")
     public void captcha(HttpServletRequest request, HttpServletResponse response) {
-        IdentCode identifyingCode = new IdentCode();
         try {
+            IdentCode identifyingCode = new IdentCode();
             identifyingCode.doGet(request, response);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * 首页
+     *
+     * @return String
+     */
     @GetMapping("/index")
     public String index() {
         return "index";
