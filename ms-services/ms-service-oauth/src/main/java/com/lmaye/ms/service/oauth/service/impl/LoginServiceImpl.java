@@ -80,6 +80,12 @@ public class LoginServiceImpl implements LoginService {
     private OauthProperties oauthProperties;
 
     /**
+     * Application Name
+     */
+    @Value("${spring.application.name}")
+    private String appName;
+
+    /**
      * 用户登录
      * - 密码授权模式
      *
@@ -115,7 +121,7 @@ public class LoginServiceImpl implements LoginService {
                 throw new ServiceException(OAuthResultCode.USER_VERIFICATION_FAILURE);
             }
             // 微服务的名称spring.application.name
-            ServiceInstance choose = loadBalancerClient.choose("ms-service-oauth");
+            ServiceInstance choose = loadBalancerClient.choose(appName);
             // 1.定义url(申请令牌的url)
             String url = Objects.isNull(choose) ? oauthProperties.getDefaultTokenUrl() : choose.getUri().toString() + "/oauth/token";
             // 2.定义头信息(有Client Id 和Client Secret)
@@ -155,7 +161,8 @@ public class LoginServiceImpl implements LoginService {
      * @param token token
      */
     private void saveCookie(String token) {
-        HttpServletResponse response = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getResponse();
+        HttpServletResponse response = ((ServletRequestAttributes) Objects.requireNonNull(
+                RequestContextHolder.getRequestAttributes())).getResponse();
         if (!Objects.isNull(response)) {
             CookieUtil.addCookie(response, oauthProperties.getCookieDomain(), "/", "Authorization", token,
                     oauthProperties.getCookieMaxAge(), false);

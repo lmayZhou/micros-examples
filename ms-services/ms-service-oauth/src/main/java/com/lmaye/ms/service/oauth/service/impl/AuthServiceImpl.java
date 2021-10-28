@@ -16,6 +16,7 @@ import com.lmaye.ms.service.user.api.entity.SysUser;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -90,6 +91,12 @@ public class AuthServiceImpl implements IAuthService {
     private UserFeign userFeign;
 
     /**
+     * Application Name
+     */
+    @Value("${spring.application.name}")
+    private String appName;
+
+    /**
      * 获取授权认证的Token令牌
      * - 密码授权模式
      *
@@ -107,7 +114,6 @@ public class AuthServiceImpl implements IAuthService {
         if (!Objects.equals(ResultCode.SUCCESS.getCode(), checkRs.getCode())) {
             return checkRs;
         }
-        String clientId = dto.getClientId();
         // 获取用户信息
         ResultVO<SysUser> result = userFeign.queryByUserName(dto.getUsername());
         SysUser user = result.getData();
@@ -117,7 +123,7 @@ public class AuthServiceImpl implements IAuthService {
         // 获取请求体
         MultiValueMap<String, String> formData = getFormData(authToken, grandType, dto, key, user.getPassword());
         // 认证处理
-        authenticationProcessing(clientId, dto.getClientSecret(), authToken, formData);
+        authenticationProcessing(dto.getClientId(), dto.getClientSecret(), authToken, formData);
         return ResultVO.success(authToken);
     }
 
@@ -157,7 +163,7 @@ public class AuthServiceImpl implements IAuthService {
         }
         OAuth2Authentication authentication = tokenStore.readAuthentication(token);
         // 续期1H
-        token.setExpiration(new Date(System.currentTimeMillis() + (3600 * 1000L)));
+        token.setExpiration(new Date(System.currentTimeMillis() + (oauthProperties.getExpiresIn() * 1000L)));
         tokenStore.storeAccessToken(token, authentication);
         return true;
     }
@@ -271,7 +277,7 @@ public class AuthServiceImpl implements IAuthService {
             // 模拟浏览器发送POST请求携带头和请求体到认证服务器
             HttpEntity<MultiValueMap<?, ?>> httpEntity = new HttpEntity<>(formData, headers);
             // 微服务的名称spring.application.name
-            ServiceInstance choose = loadBalancerClient.choose("ms-service-oauth");
+            ServiceInstance choose = loadBalancerClient.choose(appName);
             // 定义url(申请令牌的url)
             String url = Objects.isNull(choose) ? oauthProperties.getDefaultTokenUrl() : choose.getUri().toString() + "/oauth/token";
             ResponseEntity<JSONObject> responseEntity = restTemplate.exchange(url, HttpMethod.POST, httpEntity,

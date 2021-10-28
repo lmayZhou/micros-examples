@@ -2,7 +2,6 @@ package com.lmaye.ms.service.oauth.utils;
 
 import com.lmaye.cloud.core.utils.GsonUtils;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.security.jwt.Jwt;
 import org.springframework.security.jwt.JwtHelper;
 import org.springframework.security.jwt.crypto.sign.RsaSigner;
 import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
@@ -27,15 +26,14 @@ public final class AdminTokenUtils {
      */
     public static String adminToken(Map<String, Object> payload) {
         // 加载证书
-        ClassPathResource resource = new ClassPathResource("sso-service.jks");
+        ClassPathResource resource = new ClassPathResource("ms-service-oauth.jks");
         // 读取证书数据
-        KeyStoreKeyFactory storeKeyFactory = new KeyStoreKeyFactory(resource, "sso#oauth".toCharArray());
+        KeyStoreKeyFactory storeKeyFactory = new KeyStoreKeyFactory(resource, "ms-oauth".toCharArray());
         // 获取证书密钥对
-        KeyPair keyPair = storeKeyFactory.getKeyPair("sso-service", "sso#oauth".toCharArray());
+        KeyPair keyPair = storeKeyFactory.getKeyPair("ms-service-oauth", "ms-oauth".toCharArray());
         // 获取私钥
         RSAPrivateKey privateKey = (RSAPrivateKey) keyPair.getPrivate();
         // 创建令牌
-        Jwt jwt = JwtHelper.encode(GsonUtils.toJson(payload), new RsaSigner(privateKey));
-        return jwt.getEncoded();
+        return JwtHelper.encode(GsonUtils.toJson(payload), new RsaSigner(privateKey)).getEncoded();
     }
 }

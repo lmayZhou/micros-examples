@@ -18,7 +18,6 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
 
-import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.security.KeyPair;
 import java.util.Arrays;
@@ -53,12 +52,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     private DataSource dataSource;
 
     /**
-     * 密钥的配置
-     */
-    @Resource(name = "keyProperties")
-    private KeyProperties keyProperties;
-
-    /**
      * 更改存储token的策略，默认是内存策略,修改为jwt
      *
      * @return TokenStore
@@ -77,7 +70,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
      * @return KeyProperties
      */
     @Bean("keyProperties")
-    public KeyProperties keyProperties(){
+    public KeyProperties keyProperties() {
         return new KeyProperties();
     }
 
@@ -90,9 +83,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public JwtAccessTokenConverter jwtAccessTokenConverter() {
         // jwt使用这个key来签名，验证token的服务也使用这个key来验签
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-        KeyPair keyPair = new KeyStoreKeyFactory(keyProperties.getKeyStore().getLocation(),
-                keyProperties.getKeyStore().getSecret().toCharArray())
-                .getKeyPair(keyProperties.getKeyStore().getAlias(), keyProperties.getKeyStore().getPassword().toCharArray());
+        KeyProperties.KeyStore keyStore = keyProperties().getKeyStore();
+        KeyPair keyPair = new KeyStoreKeyFactory(keyStore.getLocation(), keyStore.getSecret().toCharArray())
+                .getKeyPair(keyStore.getAlias(), keyStore.getPassword().toCharArray());
         converter.setKeyPair(keyPair);
         return converter;
     }

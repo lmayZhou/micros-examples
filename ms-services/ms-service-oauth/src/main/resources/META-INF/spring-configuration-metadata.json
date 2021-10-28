@@ -16,13 +16,19 @@
     {
       "name": "oauth.cookie-max-age",
       "type": "java.lang.Integer",
-      "description": "Cookie生命周期, 以秒为单位",
+      "description": "Cookie生命周期(单位: 秒)",
       "sourceType": "com.lmaye.ms.service.oauth.properties.OauthProperties"
     },
     {
       "name": "oauth.default-token-url",
       "type": "java.lang.String",
       "description": "Spring默认授权地址",
+      "sourceType": "com.lmaye.ms.service.oauth.properties.OauthProperties"
+    },
+    {
+      "name": "oauth.expires-in",
+      "type": "java.lang.Integer",
+      "description": "Token有效时间(单位: 秒)",
       "sourceType": "com.lmaye.ms.service.oauth.properties.OauthProperties"
     }
   ],

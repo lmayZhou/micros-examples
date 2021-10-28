@@ -15,7 +15,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties("oauth")
 public class OauthProperties {
     /**
-     * Cookie生命周期, 以秒为单位
+     * Cookie生命周期(单位: 秒)
      */
     private Integer cookieMaxAge;
 
@@ -28,4 +28,9 @@ public class OauthProperties {
      * Spring默认授权地址
      */
     private String defaultTokenUrl;
+
+    /**
+     * Token有效时间(单位: 秒)
+     */
+    private Integer expiresIn;
 }

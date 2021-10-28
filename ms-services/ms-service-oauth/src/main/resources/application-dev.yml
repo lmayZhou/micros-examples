@@ -37,6 +37,7 @@ oauth:
   cookieDomain: localhost
   cookieMaxAge: -1
   defaultTokenUrl: http://127.0.0.1:8002/oauth/token
+  expiresIn: 3600
 
 encrypt:
   key-store:

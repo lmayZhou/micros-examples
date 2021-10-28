@@ -58,13 +58,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     public void configure(WebSecurity security) throws Exception {
-        security.ignoring().antMatchers("/user/login", "/user/logout", "/oauth/login", "/css/**", "/userx/login",
-                "/data/**", "/fonts/**", "/img/**", "/js/**");
+        security.ignoring().antMatchers("/v3/api-docs", "/swagger-ui/**", "/swagger-resources",
+                "/swagger-resources/configuration/**", "/user/login", "/user/logout", "/oauth/login", "/userx/login",
+                "/css/**", "/data/**", "/fonts/**", "/img/**", "/js/**");
     }
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests().antMatchers("/oauth/**", "/login/**", "/logout/**")
+        http.cors().and().csrf().disable().authorizeRequests().antMatchers("/oauth/**", "/login/**", "/logout/**")
                 .permitAll().anyRequest().authenticated().and().formLogin().permitAll();
     }
 
