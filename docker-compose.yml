@@ -51,6 +51,9 @@ services:
     hostname: ms-gateway-web
     ports:
       - 80:80
+    depends_on:
+      - lms-nacos
+      - lms-redis
 
   ms-oauth:
     build:
@@ -59,6 +62,10 @@ services:
     container_name: ms-oauth
     restart: "no"
     hostname: ms-oauth
+    depends_on:
+      - lms-mysql
+      - lms-nacos
+      - lms-redis
 
   ms-user:
     build:
@@ -67,6 +74,10 @@ services:
     container_name: ms-user
     restart: "no"
     hostname: ms-user
+    depends_on:
+      - lms-mysql
+      - lms-nacos
+      - lms-redis
 
 networks:
   default:
