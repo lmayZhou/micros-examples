@@ -60,6 +60,11 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!-- No Feign Client for loadBalancing defined. Did you forget to include spring-cloud-starter-loadbalancer? -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-loadbalancer</artifactId>
+        </dependency>
         <!-- log4j2 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -186,7 +191,7 @@
                         </authConfig>
                         <images>
                             <image>
-                                <!-- 镜像名称： 127.0.0.1:5001/lmaye/ms-service-oauth:1.0.1-SNAPSHOT-->
+                                <!-- 镜像名称： 127.0.0.1:5001/lmaye/ms-service-oauth:1.0.1-SNAPSHOT -->
                                 <name>${docker.registry}/${docker.namespace}/${project.name}:${project.version}</name>
                                 <build>
                                     <dockerFile>${project.basedir}/Dockerfile</dockerFile>

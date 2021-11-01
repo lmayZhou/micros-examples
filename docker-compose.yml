@@ -1,0 +1,74 @@
+version: '2'
+services:
+  lms-mysql:
+    build:
+      context: ./db
+    image: lms-mysql
+    container_name: lms-mysql
+    restart: "no"
+#    hostname: lms-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      - 3306:3306
+
+  lms-nacos:
+    container_name: lms-nacos
+    image: nacos/nacos-server
+    restart: "no"
+    hostname: lms-nacos
+    ports:
+      - 8848:8848
+      # 客户端gRPC请求服务端端口，用于客户端向服务端发起连接和请求
+      - 9848:9848
+    environment:
+      - PREFER_HOST_MODE=hostname
+      - MODE=standalone
+      - SPRING_DATASOURCE_PLATFORM=mysql
+      - MYSQL_SERVICE_HOST=lms-mysql
+      - MYSQL_SERVICE_DB_NAME=nacos_db
+      - MYSQL_SERVICE_PORT=3306
+      - MYSQL_SERVICE_USER=root
+      - MYSQL_SERVICE_PASSWORD=root
+    depends_on:
+      - lms-mysql
+
+  lms-redis:
+    image: redis:6.2.3
+    container_name: lms-redis
+    restart: "no"
+    hostname: lms-redis
+    ports:
+      - 6379:6379
+
+  ms-gateway-web:
+    build:
+      context: ./ms-gateway/ms-gateway-web
+    image: ms-gateway-web
+    container_name: ms-gateway-web
+    restart: "no"
+    hostname: ms-gateway-web
+    ports:
+      - 80:80
+
+  ms-oauth:
+    build:
+      context: ./ms-services/ms-service-oauth
+    image: ms-service-oauth
+    container_name: ms-oauth
+    restart: "no"
+    hostname: ms-oauth
+
+  ms-user:
+    build:
+      context: ./ms-services/ms-service-user
+    image: ms-service-user
+    container_name: ms-user
+    restart: "no"
+    hostname: ms-user
+
+networks:
+  default:
+    external:
+      name: net-lmay

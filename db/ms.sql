@@ -2,6 +2,14 @@
 /* DBMS name:      MySQL 5.0                                    */
 /* Created on:     2020/12/25 14:46:42                          */
 /*==============================================================*/
+DROP DATABASE IF EXISTS `ms_user`;
+
+CREATE DATABASE  `ms_user` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+USE `ms_user`;
 
 drop table if exists oauth_client_details;
 

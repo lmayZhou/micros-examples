@@ -73,6 +73,12 @@
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
         </dependency>
+        <!-- 负载均衡 loadbalancer -->
+        <!-- 由于Spring Cloud 2020弃用了Ribbon，因此Alibaba在2021版本中删除了Ribbon的包，导致无法通过lb路由到指定微服务 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-loadbalancer</artifactId>
+        </dependency>
         <!-- Spring Boot Starter -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -155,7 +161,7 @@
                         </authConfig>
                         <images>
                             <image>
-                                <!-- 镜像名称： 172.17.0.111/library/xxx-gateway:2.6.3-->
+                                <!-- 镜像名称： 127.0.0.1:5001/lmaye/ms-gateway-web:1.0.1-SNAPSHOT -->
                                 <name>${docker.registry}/${docker.namespace}/${project.name}:${project.version}</name>
                                 <build>
                                     <dockerFile>${project.basedir}/Dockerfile</dockerFile>

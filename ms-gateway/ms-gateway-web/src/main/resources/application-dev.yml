@@ -16,6 +16,7 @@ spring:
         max-idle: 8
         max-wait: -1ms
         min-idle: 0
+  cloud:
     # 网关
     gateway:
       globalcors:
@@ -33,14 +34,14 @@ spring:
       # 路由
       routes:
         - id: user-service-route
-#          uri: http://localhost:8003
-          uri: lb://user-service
+#          uri: http://127.0.0.1:8003
+          uri: lb://ms-service-user
           predicates:
 #            - Host = test.lmaye.com**
-            - Path=/**
+            - Path=/api/user/**
           filters:
 #            - PrefixPath=/user
-            - StripPrefix=1
+            - StripPrefix=2
 
 # 网关认证配置
 gateway-auth:
@@ -48,16 +49,15 @@ gateway-auth:
   authorizeToken: Authorization
   # 放行的请求路径(eg: /api/shopify-plugin/category/list)
   excludeUrls:
-    - /*/doc.html
-    - /*/v3/api-docs
-    - /**/doc.html
+    - /**/v3/api-docs
     - /**/swagger-resources
-    - /**/swagger/**
-    - /**/v2/api-docs
+    - /**/swagger-resources/configuration/**
+    - /**/swagger-ui/**
+    - /**/actuator/**
+    - /**/instances/**
     - /**/*.js
     - /**/*.css
     - /**/*.png
     - /**/*.ico
-    - /**/webjars/springfox-swagger-ui/**
   # 认证登录地址
   oauthLogin: http://localhost:9088/login
