@@ -186,7 +186,7 @@
                         </authConfig>
                         <images>
                             <image>
-                                <!-- 镜像名称： 172.17.0.111/library/pig-gateway:2.6.3-->
+                                <!-- 镜像名称： 127.0.0.1:5001/lmaye/ms-service-oauth:1.0.1-SNAPSHOT-->
                                 <name>${docker.registry}/${docker.namespace}/${project.name}:${project.version}</name>
                                 <build>
                                     <dockerFile>${project.basedir}/Dockerfile</dockerFile>

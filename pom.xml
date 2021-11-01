@@ -33,8 +33,8 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <docker.plugin.version>0.32.0</docker.plugin.version>
         <docker.host>http://127.0.0.1:2375</docker.host>
-        <docker.registry>127.0.0.1</docker.registry>
-        <docker.namespace>lms-cloud</docker.namespace>
+        <docker.registry>127.0.0.1:5001</docker.registry>
+        <docker.namespace>lmaye</docker.namespace>
         <docker.username>admin</docker.username>
         <docker.password>123456</docker.password>
         <disruptor.version>3.4.4</disruptor.version>

@@ -1,8 +1,8 @@
 package com.lmaye.ms.service.file.controller;
 
+import com.lmaye.cloud.core.exception.ServiceException;
 import com.lmaye.cloud.starter.web.context.ResultVO;
 import com.lmaye.cloud.core.context.ResultCode;
-import com.lmaye.ms.core.exception.ServiceException;
 import com.lmaye.cloud.starter.minio.service.IMinIoFileStoreService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
