@@ -13,6 +13,15 @@ services:
     ports:
       - 3306:3306
 
+  lms-redis:
+    image: redis:6.2.3
+    container_name: lms-redis
+    restart: "no"
+    hostname: lms-redis
+    ports:
+      - 6379:6379
+    command: redis-server --requirepass 123456
+
   lms-nacos:
     container_name: lms-nacos
     image: nacos/nacos-server
@@ -34,14 +43,6 @@ services:
     depends_on:
       - lms-mysql
 
-  lms-redis:
-    image: redis:6.2.3
-    container_name: lms-redis
-    restart: "no"
-    hostname: lms-redis
-    ports:
-      - 6379:6379
-
   ms-gateway-web:
     build:
       context: ./ms-gateway/ms-gateway-web
@@ -52,8 +53,8 @@ services:
     ports:
       - 80:80
     depends_on:
-      - lms-nacos
       - lms-redis
+      - lms-nacos
 
   ms-oauth:
     build:
@@ -62,10 +63,12 @@ services:
     container_name: ms-oauth
     restart: "no"
     hostname: ms-oauth
+    ports:
+      - 8002:8002
     depends_on:
       - lms-mysql
-      - lms-nacos
       - lms-redis
+      - lms-nacos
 
   ms-user:
     build:
@@ -76,8 +79,8 @@ services:
     hostname: ms-user
     depends_on:
       - lms-mysql
-      - lms-nacos
       - lms-redis
+      - lms-nacos
 
 networks:
   default:
