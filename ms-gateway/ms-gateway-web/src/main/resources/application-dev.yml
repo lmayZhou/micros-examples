@@ -38,10 +38,10 @@ spring:
           uri: lb://ms-service-user
           predicates:
 #            - Host = test.lmaye.com**
-            - Path=/api/user/**
+            - Path=/ms-service-user/**
           filters:
 #            - PrefixPath=/user
-            - StripPrefix=2
+            - StripPrefix=1
 
 # 网关认证配置
 gateway-auth:
