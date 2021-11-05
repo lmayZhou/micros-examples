@@ -1,6 +1,6 @@
 package com.lmaye.ms.user.repository;
 
-import com.lmaye.ms.service.user.api.entity.OauthClientDetails;
+import com.lmaye.ms.user.api.entity.OauthClientDetails;
 import com.lmaye.cloud.starter.mybatis.repository.IMyBatisRepository;
 import org.apache.ibatis.annotations.Mapper;
 

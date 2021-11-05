@@ -2,8 +2,8 @@
   "groups": [
     {
       "name": "oauth",
-      "type": "com.lmaye.ms.service.oauth.properties.OauthProperties",
-      "sourceType": "com.lmaye.ms.service.oauth.properties.OauthProperties"
+      "type": "com.lmaye.ms.oauth.properties.OauthProperties",
+      "sourceType": "com.lmaye.ms.oauth.properties.OauthProperties"
     }
   ],
   "properties": [
@@ -11,25 +11,25 @@
       "name": "oauth.cookie-domain",
       "type": "java.lang.String",
       "description": "Cookie站点",
-      "sourceType": "com.lmaye.ms.service.oauth.properties.OauthProperties"
+      "sourceType": "com.lmaye.ms.oauth.properties.OauthProperties"
     },
     {
       "name": "oauth.cookie-max-age",
       "type": "java.lang.Integer",
       "description": "Cookie生命周期(单位: 秒)",
-      "sourceType": "com.lmaye.ms.service.oauth.properties.OauthProperties"
+      "sourceType": "com.lmaye.ms.oauth.properties.OauthProperties"
     },
     {
       "name": "oauth.default-token-url",
       "type": "java.lang.String",
       "description": "Spring默认授权地址",
-      "sourceType": "com.lmaye.ms.service.oauth.properties.OauthProperties"
+      "sourceType": "com.lmaye.ms.oauth.properties.OauthProperties"
     },
     {
       "name": "oauth.expires-in",
       "type": "java.lang.Integer",
       "description": "Token有效时间(单位: 秒)",
-      "sourceType": "com.lmaye.ms.service.oauth.properties.OauthProperties"
+      "sourceType": "com.lmaye.ms.oauth.properties.OauthProperties"
     }
   ],
   "hints": []

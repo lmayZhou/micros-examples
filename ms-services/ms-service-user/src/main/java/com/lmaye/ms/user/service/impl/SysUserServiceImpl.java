@@ -2,7 +2,7 @@ package com.lmaye.ms.user.service.impl;
 
 import com.lmaye.ms.user.repository.SysUserRepository;
 import com.lmaye.ms.user.service.ISysUserService;
-import com.lmaye.ms.service.user.api.entity.SysUser;
+import com.lmaye.ms.user.api.entity.SysUser;
 import com.lmaye.cloud.starter.mybatis.service.impl.MyBatisServiceImpl;
 import org.springframework.stereotype.Service;
 
