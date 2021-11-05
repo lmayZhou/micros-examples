@@ -19,7 +19,7 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableConfigurationProperties(OauthProperties.class)
-@EnableFeignClients(basePackages = {"com.lmaye.ms.service.*.api"})
+@EnableFeignClients(basePackages = {"com.lmaye.ms.*.api"})
 public class OauthServiceApplication {
     public static void main(String[] args) {
         SpringApplication.run(OauthServiceApplication.class, args);
