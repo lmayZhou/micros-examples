@@ -59,6 +59,7 @@ gateway-auth:
     - /**/swagger-resources
     - /**/swagger-resources/configuration/**
     - /**/swagger-ui/**
+    - /**/doc.html
     - /**/actuator/**
     - /**/instances/**
     - /**/*.js
