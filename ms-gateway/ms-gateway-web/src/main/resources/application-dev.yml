@@ -61,3 +61,8 @@ gateway-auth:
     - /**/*.ico
   # 认证登录地址
   oauthLogin: http://localhost:9088/login
+
+# SwaggerUI
+springfox:
+  documentation:
+    enabled: true
