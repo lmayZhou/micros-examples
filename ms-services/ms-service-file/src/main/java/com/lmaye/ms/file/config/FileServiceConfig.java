@@ -1,4 +1,4 @@
-package com.lmaye.ms.service.file.config;
+package com.lmaye.ms.file.config;
 
 import org.springframework.context.annotation.Configuration;
 

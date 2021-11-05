@@ -1,4 +1,4 @@
-package com.lmaye.ms.service.file.controller;
+package com.lmaye.ms.file.controller;
 
 import com.lmaye.cloud.core.exception.ServiceException;
 import com.lmaye.cloud.starter.web.context.ResultVO;

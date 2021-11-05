@@ -1,4 +1,4 @@
-package com.lmaye.ms.service.file;
+package com.lmaye.ms.file;
 
 import com.lmaye.cloud.starter.minio.service.IMinIoClientService;
 import io.minio.GetPresignedObjectUrlArgs;

@@ -42,6 +42,12 @@ spring:
           filters:
 #            - PrefixPath=/user
             - StripPrefix=1
+        - id: file-service-route
+          uri: lb://ms-service-file
+          predicates:
+            - Path=/ms-service-file/**
+          filters:
+            - StripPrefix=1
 
 # 网关认证配置
 gateway-auth:
