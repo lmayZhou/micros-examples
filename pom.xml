@@ -20,9 +20,9 @@
     <modules>
         <!-- Gateway Service -->
         <module>ms-gateway</module>
-        <!-- Services 系统服务 -->
+        <!-- Services -->
         <module>ms-services</module>
-        <!-- Services Api 系统服务 -->
+        <!-- Services Api -->
         <module>ms-services-api</module>
     </modules>
 
