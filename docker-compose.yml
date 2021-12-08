@@ -46,7 +46,7 @@ services:
   ms-gateway-web:
     build:
       context: ./ms-gateway/ms-gateway-web
-    image: ms-gateway-web
+    image: lmaye/ms-gateway-web
     container_name: ms-gateway-web
     restart: "no"
     hostname: ms-gateway-web
@@ -59,7 +59,7 @@ services:
   ms-oauth:
     build:
       context: ./ms-services/ms-service-oauth
-    image: ms-service-oauth
+    image: lmaye/ms-service-oauth
     container_name: ms-oauth
     restart: "no"
     hostname: ms-oauth
@@ -73,7 +73,7 @@ services:
   ms-user:
     build:
       context: ./ms-services/ms-service-user
-    image: ms-service-user
+    image: lmaye/ms-service-user
     container_name: ms-user
     restart: "no"
     hostname: ms-user

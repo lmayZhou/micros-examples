@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: common-config
+data:
+  SPRING_PROFILES_ACTIVE: test
+  SERVER_PORT: "80"
