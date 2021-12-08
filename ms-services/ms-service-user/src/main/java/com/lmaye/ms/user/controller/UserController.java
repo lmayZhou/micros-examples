@@ -1,7 +1,10 @@
 package com.lmaye.ms.user.controller;
 
 import com.lmaye.cloud.starter.mybatis.utils.MyBatisUtils;
+import com.lmaye.cloud.starter.web.context.PageResult;
 import com.lmaye.cloud.starter.web.context.ResultVO;
+import com.lmaye.cloud.starter.web.query.ListQuery;
+import com.lmaye.cloud.starter.web.query.PageQuery;
 import com.lmaye.cloud.starter.web.query.Query;
 import com.lmaye.cloud.starter.web.query.TermQuery;
 import com.lmaye.ms.user.api.entity.SysUser;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 import java.util.Collections;
+import java.util.List;
 
 /**
  * -- 用户 Controller
@@ -76,5 +80,17 @@ public class UserController {
     @ApiOperation(value = "新增用户信息", notes = "新增用户信息", response = ResultVO.class)
     public Mono<ResultVO<SysUser>> save(@RequestBody SysUser user) {
         return Mono.just(ResultVO.success(sysUserService.insert(user).orElse(null)));
+    }
+
+    /**
+     * 关联查询
+     *
+     * @param query 请求参数
+     * @return Mono<ResultVO<List<SysUser>>>
+     */
+    @PostMapping("/queryAssociate")
+    @ApiOperation(value = "关联查询", response = ResultVO.class)
+    public Mono<ResultVO<List<SysUser>>> queryAssociate(@RequestBody ListQuery query) {
+        return Mono.just(ResultVO.success(sysUserService.queryAssociate(query)));
     }
 }

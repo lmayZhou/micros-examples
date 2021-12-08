@@ -1,7 +1,10 @@
 package com.lmaye.ms.user.service;
 
-import com.lmaye.ms.user.api.entity.SysUser;
 import com.lmaye.cloud.starter.mybatis.service.IMyBatisService;
+import com.lmaye.cloud.starter.web.query.ListQuery;
+import com.lmaye.ms.user.api.entity.SysUser;
+
+import java.util.List;
 
 /**
  * <p>
@@ -12,5 +15,5 @@ import com.lmaye.cloud.starter.mybatis.service.IMyBatisService;
  * @since 2020-12-25
  */
 public interface ISysUserService extends IMyBatisService<SysUser, Long> {
-
+    List<SysUser> queryAssociate(ListQuery query);
 }
