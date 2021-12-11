@@ -1,25 +1,23 @@
 # https://matthewpalmer.net/kubernetes-app-developer/articles/kubernetes-apiversion-definition-guide.html
-# https://stackoverflow.com/questions/53775328/kubernetes-port-forwarding-error-listen-tcp4-127-0-0-188-bind-permission-de
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ms-gateway-web-deployment
+  name: ms-user-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ms-gateway-web
+      app: ms-user
   template:
     metadata:
       labels:
-        app: ms-gateway-web
+        app: ms-user
         env: test
     spec:
       containers:
-        - name: ms-gateway-web
-          image: lmay/ms-gateway-web
-          # IfNotPresent/Always/Never
-          imagePullPolicy: IfNotPresent
+        - name: ms-user
+          image: lmay/ms-service-user
+          imagePullPolicy: Never
           ports:
             - name: http-port
               containerPort: 80
@@ -30,14 +28,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: ms-gateway-web
+  name: ms-service-user
 spec:
   selector:
-    app: ms-gateway-web
+    app: ms-user
     env: test
   ports:
     - protocol: TCP
       port: 80
       targetPort: 80
-      nodePort: 30001
-  type: NodePort

@@ -1,0 +1,21 @@
+# https://cloud.google.com/blog/products/gcp/kubernetes-best-practices-mapping-external-services
+# https://confluence.atlassian.com/jirakb/configuring-database-connection-results-in-error-host-xxxxxxx-is-not-allowed-to-connect-to-this-mysql-server-358908249.html
+kind: Service
+apiVersion: v1
+metadata:
+  name: lms-redis
+spec:
+  type: ClusterIP
+  ports:
+    - port: 6379
+      targetPort: 6379
+---
+kind: Endpoints
+apiVersion: v1
+metadata:
+  name: lms-redis
+subsets:
+  - addresses:
+      - ip: 192.168.0.207
+    ports:
+      - port: 6379

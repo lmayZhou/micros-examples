@@ -6,9 +6,7 @@ server:
 spring:
   # Redis
   redis:
-    host: ${REDIS_HOST:lms-redis}
-    port: ${REDIS_PORT:6379}
-    password: 123456
+    url: redis://:${REDIS_PASSWORD:123456}@${REDIS_SERVER:lms-redis:6379}
     timeout: 100ms
     jedis:
       pool:
@@ -38,14 +36,14 @@ spring:
           uri: lb://ms-service-user
           predicates:
 #            - Host = test.lmaye.com**
-            - Path=/ms-service-user/**
+            - Path=/ms-user/**
           filters:
 #            - PrefixPath=/user
             - StripPrefix=1
         - id: file-service-route
           uri: lb://ms-service-file
           predicates:
-            - Path=/ms-service-file/**
+            - Path=/ms-file/**
           filters:
             - StripPrefix=1
 

@@ -6,7 +6,7 @@ spring:
   # 数据库配置
   datasource:
     name: sys
-    url: jdbc:mysql://${MYSQL_HOST:lms-mysql}:${MYSQL_PORT:3306}/ms_user?allowMultiQueries=true&useSSL=false&characterEncoding=utf8
+    url: jdbc:mysql://${MYSQL_SERVER:lms-mysql:3306}/ms_user?allowMultiQueries=true&useSSL=false&characterEncoding=utf8
     username: root
     password: root
     hikari:

@@ -52,10 +52,9 @@ services:
     ports:
       - 80:80
     environment:
-      - NACOS_HOST
-      - NACOS_PORT
-      - REDIS_HOST
-      - REDIS_PORT
+      - NACOS_SERVER
+      - REDIS_SERVER
+      - REDIS_PASSWORD
 #    depends_on:
 #      - lmay-redis
 #      - lmay-nacos
@@ -76,14 +75,18 @@ services:
 #      - lmay-mysql
 #      - lmay-redis
 #      - lmay-nacos
-#
-#  ms-user:
-#    build:
-#      context: ./ms-services/ms-service-user
-#    image: lmay/ms-service-user
-#    container_name: ms-user
-#    restart: "no"
-#    hostname: ms-user
+
+  ms-user:
+    build: ./ms-services/ms-service-user
+    image: lmay/ms-service-user
+    container_name: ms-user
+    restart: "no"
+    hostname: ms-user
+    environment:
+      - MYSQL_SERVER
+      - NACOS_SERVER
+      - REDIS_SERVER
+      - REDIS_PASSWORD
 #    depends_on:
 #      - lmay-mysql
 #      - lmay-redis
