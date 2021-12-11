@@ -1,88 +1,100 @@
 version: '3'
 services:
-  lms-mysql:
-    build:
-      context: ./db
-    image: lms-mysql
-    container_name: lms-mysql
-    restart: "no"
-#    hostname: lms-mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_ROOT_HOST: '%'
-    ports:
-      - 3306:3306
+#  lmay-mysql:
+#    build:
+#      context: ./db
+#    image: lmay-mysql
+#    container_name: lmay-mysql
+#    restart: "no"
+#    hostname: lmay-mysql
+#    environment:
+#      MYSQL_ROOT_PASSWORD: root
+#      MYSQL_ROOT_HOST: '%'
+#    ports:
+#      - 3306:3306
+#
+#  lmay-redis:
+#    image: redis:6.2.3
+#    container_name: lmay-redis
+#    restart: "no"
+#    hostname: lmay-redis
+#    ports:
+#      - 6379:6379
+#    command: redis-server --requirepass 123456
 
-  lms-redis:
-    image: redis:6.2.3
-    container_name: lms-redis
-    restart: "no"
-    hostname: lms-redis
-    ports:
-      - 6379:6379
-    command: redis-server --requirepass 123456
-
-  lms-nacos:
-    container_name: lms-nacos
-    image: nacos/nacos-server
-    restart: "no"
-    hostname: lms-nacos
-    ports:
-      - 8848:8848
-      # 客户端gRPC请求服务端端口，用于客户端向服务端发起连接和请求
-      - 9848:9848
-    environment:
-      - PREFER_HOST_MODE=hostname
-      - MODE=standalone
-      - SPRING_DATASOURCE_PLATFORM=mysql
-      - MYSQL_SERVICE_HOST=lms-mysql
-      - MYSQL_SERVICE_DB_NAME=nacos_db
-      - MYSQL_SERVICE_PORT=3306
-      - MYSQL_SERVICE_USER=root
-      - MYSQL_SERVICE_PASSWORD=root
-    depends_on:
-      - lms-mysql
+#  lmay-nacos:
+#    container_name: lmay-nacos
+#    image: zhusaidong/nacos-server-m1:2.0.3
+#    restart: "no"
+#    hostname: lmay-nacos
+#    ports:
+#      - 8848:8848
+#      # 客户端gRPC请求服务端端口，用于客户端向服务端发起连接和请求
+#      - 9848:9848
+#    environment:
+#      - PREFER_HOST_MODE=hostname
+#      - MODE=standalone
+#      - SPRING_DATASOURCE_PLATFORM=mysql
+#      - MYSQL_SERVICE_HOST=lmay-mysql
+#      - MYSQL_SERVICE_DB_NAME=nacos_db
+#      - MYSQL_SERVICE_PORT=3306
+#      - MYSQL_SERVICE_USER=root
+#      - MYSQL_SERVICE_PASSWORD=root
+#    depends_on:
+#      - lmay-mysql
 
   ms-gateway-web:
-    build:
-      context: ./ms-gateway/ms-gateway-web
-    image: lmaye/ms-gateway-web
+    build: ./ms-gateway/ms-gateway-web
+    image: lmay/ms-gateway-web
     container_name: ms-gateway-web
     restart: "no"
-    hostname: ms-gateway-web
+#    hostname: ms-gateway-web
     ports:
       - 80:80
-    depends_on:
-      - lms-redis
-      - lms-nacos
+    environment:
+      - NACOS_HOST
+      - NACOS_PORT
+      - REDIS_HOST
+      - REDIS_PORT
+#    depends_on:
+#      - lmay-redis
+#      - lmay-nacos
+    networks:
+      - internal_access
+      - external_access
 
-  ms-oauth:
-    build:
-      context: ./ms-services/ms-service-oauth
-    image: lmaye/ms-service-oauth
-    container_name: ms-oauth
-    restart: "no"
-    hostname: ms-oauth
-    ports:
-      - 8002:8002
-    depends_on:
-      - lms-mysql
-      - lms-redis
-      - lms-nacos
+#  ms-oauth:
+#    build:
+#      context: ./ms-services/ms-service-oauth
+#    image: lmay/ms-service-oauth
+#    container_name: ms-oauth
+#    restart: "no"
+#    hostname: ms-oauth
+#    ports:
+#      - 8002:8002
+#    depends_on:
+#      - lmay-mysql
+#      - lmay-redis
+#      - lmay-nacos
+#
+#  ms-user:
+#    build:
+#      context: ./ms-services/ms-service-user
+#    image: lmay/ms-service-user
+#    container_name: ms-user
+#    restart: "no"
+#    hostname: ms-user
+#    depends_on:
+#      - lmay-mysql
+#      - lmay-redis
+#      - lmay-nacos
 
-  ms-user:
-    build:
-      context: ./ms-services/ms-service-user
-    image: lmaye/ms-service-user
-    container_name: ms-user
-    restart: "no"
-    hostname: ms-user
-    depends_on:
-      - lms-mysql
-      - lms-redis
-      - lms-nacos
+#networks:
+#  default:
+#    external:
+#      name: net-lmay
 
 networks:
-  default:
-    external:
-      name: net-lmay
+  internal_access:
+    internal: true
+  external_access:
