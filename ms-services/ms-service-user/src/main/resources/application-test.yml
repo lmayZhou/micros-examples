@@ -1,0 +1,18 @@
+# 服务端口
+server:
+  port: 8003
+
+spring:
+  # 数据库配置
+  datasource:
+    name: sys
+    url: jdbc:mysql://${MYSQL_SERVER:lms-mysql:3306}/ms_user?allowMultiQueries=true&useSSL=false&characterEncoding=utf8
+    username: root
+    password: root
+    hikari:
+      max-lifetime: 1800000
+      minimum-idle: 1
+      maximum-pool-size: 2
+      connection-timeout: 30000
+      idle-timeout: 30000
+      connection-test-query: select 1
