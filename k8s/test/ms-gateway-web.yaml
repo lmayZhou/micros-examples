@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: ms-gateway-web
-          image: lmaye/ms-gateway-web
+          image: lmay/ms-gateway-web
           # IfNotPresent/Always/Never
           imagePullPolicy: IfNotPresent
           ports:

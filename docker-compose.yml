@@ -48,7 +48,7 @@ services:
     image: lmay/ms-gateway-web
     container_name: ms-gateway-web
     restart: "no"
-#    hostname: ms-gateway-web
+    hostname: ms-gateway-web
     ports:
       - 80:80
     environment:
@@ -59,9 +59,9 @@ services:
 #    depends_on:
 #      - lmay-redis
 #      - lmay-nacos
-    networks:
-      - internal_access
-      - external_access
+#    networks:
+#      - internal_access
+#      - external_access
 
 #  ms-oauth:
 #    build:
@@ -94,7 +94,7 @@ services:
 #    external:
 #      name: net-lmay
 
-networks:
-  internal_access:
-    internal: true
-  external_access:
+#networks:
+#  internal_access:
+#    internal: true
+#  external_access:
