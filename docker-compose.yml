@@ -76,12 +76,12 @@ services:
 #      - lmay-redis
 #      - lmay-nacos
 
-  ms-user:
+  ms-service-user:
     build: ./ms-services/ms-service-user
     image: lmay/ms-service-user
-    container_name: ms-user
+    container_name: ms-service-user
     restart: "no"
-    hostname: ms-user
+    hostname: ms-service-user
     environment:
       - MYSQL_SERVER
       - NACOS_SERVER

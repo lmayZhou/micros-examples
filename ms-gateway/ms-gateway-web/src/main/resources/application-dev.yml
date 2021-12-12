@@ -36,14 +36,14 @@ spring:
           uri: lb://ms-service-user
           predicates:
 #            - Host = test.lmaye.com**
-            - Path=/ms-user/**
+            - Path=/ms-service-user/**
           filters:
 #            - PrefixPath=/user
             - StripPrefix=1
         - id: file-service-route
           uri: lb://ms-service-file
           predicates:
-            - Path=/ms-file/**
+            - Path=/ms-service-file/**
           filters:
             - StripPrefix=1
 

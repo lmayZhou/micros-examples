@@ -32,18 +32,18 @@ spring:
       # 路由
       routes:
         - id: user-service-route
-#          uri: http://127.0.0.1:8003
+          #          uri: http://127.0.0.1:8003
           uri: lb://ms-service-user
           predicates:
-#            - Host = test.lmaye.com**
-            - Path=/ms-user/**
+            #            - Host = test.lmaye.com**
+            - Path=/ms-service-user/**
           filters:
-#            - PrefixPath=/user
+            #            - PrefixPath=/user
             - StripPrefix=1
         - id: file-service-route
           uri: lb://ms-service-file
           predicates:
-            - Path=/ms-file/**
+            - Path=/ms-service-file/**
           filters:
             - StripPrefix=1
 
