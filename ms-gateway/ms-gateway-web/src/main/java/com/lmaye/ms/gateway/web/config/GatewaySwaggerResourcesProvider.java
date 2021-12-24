@@ -1,5 +1,6 @@
 package com.lmaye.ms.gateway.web.config;
 
+import com.lmaye.ms.gateway.web.GatewayProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.route.RouteLocator;
@@ -25,21 +26,22 @@ import java.util.Set;
 @Component
 public class GatewaySwaggerResourcesProvider implements SwaggerResourcesProvider {
     /**
-     * swagger3默认的url后缀
+     * 网关应用名称
      */
-    private static final String SWAGGER2URL = "/v3/api-docs";
+    @Value("${spring.application.name}")
+    private String self;
+
+    /**
+     * Swagger 文档数据URI(※ Swagger3.0 basePath存在问题)
+     */
+    @Autowired
+    private GatewayProperties gatewayProperties;
 
     /**
      * 网关路由
      */
     @Autowired
     private RouteLocator routeLocator;
-
-    /**
-     * 网关应用名称
-     */
-    @Value("${spring.application.name}")
-    private String self;
 
     @Override
     public List<SwaggerResource> get() {
@@ -50,7 +52,7 @@ public class GatewaySwaggerResourcesProvider implements SwaggerResourcesProvider
                 .subscribe(route -> routeHosts.add(route.getUri().getHost()));
         Set<String> urls = new HashSet<>();
         routeHosts.forEach(instance -> {
-            String url = "/" + instance.toLowerCase() + SWAGGER2URL;
+            String url = "/" + instance.toLowerCase() + gatewayProperties.getSwaggerApiDocUri();
             if (!urls.contains(url)) {
                 urls.add(url);
                 SwaggerResource swaggerResource = new SwaggerResource();

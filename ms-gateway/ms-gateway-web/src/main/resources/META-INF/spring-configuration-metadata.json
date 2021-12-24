@@ -1,28 +1,36 @@
 {
-  "properties": [
+  "groups": [
     {
-      "name": "gateway-auth.authorizeToken",
-      "type": "java.lang.String",
-      "sourceType": "com.lmaye.ms.gateway.web.AuthProperties",
-      "description": "Description for gateway-auth.authorizeToken.",
-      "defaultValue": "Authorization"
-    },
-    {
-      "name": "gateway-auth.excludeUrls",
-      "type": "java.util.List",
-      "sourceType": "com.lmaye.ms.gateway.web.AuthProperties",
-      "description": "Description for gateway-auth.excludeUrls.",
-      "defaultValue": ""
-    },
-    {
-      "name": "gateway-auth.oauthLogin",
-      "type": "java.lang.String",
-      "sourceType": "com.lmaye.ms.gateway.web.AuthProperties",
-      "description": "Description for gateway-auth.oauthLogin.",
-      "defaultValue": ""
+      "name": "ms-gateway",
+      "type": "com.lmaye.ms.gateway.web.GatewayProperties",
+      "sourceType": "com.lmaye.ms.gateway.web.GatewayProperties"
     }
   ],
-  "hints": [
-
-  ]
+  "properties": [
+    {
+      "name": "ms-gateway.authorize-token",
+      "type": "java.lang.String",
+      "description": "Token 标识",
+      "sourceType": "com.lmaye.ms.gateway.web.GatewayProperties"
+    },
+    {
+      "name": "ms-gateway.exclude-urls",
+      "type": "java.util.List<java.lang.String>",
+      "description": "放行的请求路径",
+      "sourceType": "com.lmaye.ms.gateway.web.GatewayProperties"
+    },
+    {
+      "name": "ms-gateway.oauth-login",
+      "type": "java.lang.String",
+      "description": "认证登录地址",
+      "sourceType": "com.lmaye.ms.gateway.web.GatewayProperties"
+    },
+    {
+      "name": "ms-gateway.swagger-api-doc-uri",
+      "type": "java.lang.String",
+      "description": "Swagger 文档数据URI",
+      "sourceType": "com.lmaye.ms.gateway.web.GatewayProperties"
+    }
+  ],
+  "hints": []
 }

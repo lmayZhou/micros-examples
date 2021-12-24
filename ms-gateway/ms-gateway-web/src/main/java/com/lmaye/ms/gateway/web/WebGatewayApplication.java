@@ -16,7 +16,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableConfigurationProperties(AuthProperties.class)
+@EnableConfigurationProperties(GatewayProperties.class)
 public class WebGatewayApplication {
     public static void main(String[] args) {
         SpringApplication.run(WebGatewayApplication.class, args);

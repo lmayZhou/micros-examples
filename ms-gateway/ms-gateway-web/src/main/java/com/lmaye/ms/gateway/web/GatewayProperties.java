@@ -13,12 +13,17 @@ import java.util.List;
  * @email lmay@lmaye.com
  */
 @Data
-@ConfigurationProperties(prefix = "gateway-auth")
-public class AuthProperties {
+@ConfigurationProperties(prefix = "ms-gateway")
+public class GatewayProperties {
     /**
      * Token 标识
      */
-    private String authorizeToken;
+    private String authorizeToken = "Authorization";
+
+    /**
+     * Swagger 文档数据URI
+     */
+    private String swaggerApiDocUri = "/v2/api-docs";
 
     /**
      * 放行的请求路径

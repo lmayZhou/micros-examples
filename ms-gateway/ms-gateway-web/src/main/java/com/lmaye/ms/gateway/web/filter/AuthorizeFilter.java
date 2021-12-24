@@ -1,6 +1,6 @@
 package com.lmaye.ms.gateway.web.filter;
 
-import com.lmaye.ms.gateway.web.AuthProperties;
+import com.lmaye.ms.gateway.web.GatewayProperties;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
@@ -30,10 +30,10 @@ public class AuthorizeFilter implements GlobalFilter, Ordered {
     /**
      * Auth Properties
      */
-    private final AuthProperties authProperties;
+    private final GatewayProperties gatewayProperties;
 
-    public AuthorizeFilter(AuthProperties authProperties) {
-        this.authProperties = authProperties;
+    public AuthorizeFilter(GatewayProperties gatewayProperties) {
+        this.gatewayProperties = gatewayProperties;
     }
 
     /**
@@ -51,16 +51,16 @@ public class AuthorizeFilter implements GlobalFilter, Ordered {
             // 获取请求对象
             ServerHttpRequest request = exchange.getRequest();
             // 判断是否为登录的URL
-            if (hasAutoresize(authProperties.getExcludeUrls(), request.getURI().getPath())) {
+            if (hasAutoresize(gatewayProperties.getExcludeUrls(), request.getURI().getPath())) {
                 // 放行
                 return chain.filter(exchange);
             }
             // 从头header中获取令牌数据
             HttpHeaders headers = request.getHeaders();
-            String token = headers.getFirst(authProperties.getAuthorizeToken());
+            String token = headers.getFirst(gatewayProperties.getAuthorizeToken());
             if (StringUtils.isEmpty(token)) {
                 // 从cookie中中获取令牌数据
-                HttpCookie first = request.getCookies().getFirst(authProperties.getAuthorizeToken());
+                HttpCookie first = request.getCookies().getFirst(gatewayProperties.getAuthorizeToken());
                 if (!Objects.isNull(first)) {
                     // 令牌的数据
                     token = first.getValue();
@@ -68,18 +68,18 @@ public class AuthorizeFilter implements GlobalFilter, Ordered {
             }
             if (StringUtils.isEmpty(token)) {
                 // 从请求参数中获取令牌数据
-                token = request.getQueryParams().getFirst(authProperties.getAuthorizeToken());
+                token = request.getQueryParams().getFirst(gatewayProperties.getAuthorizeToken());
             }
             if (StringUtils.isEmpty(token)) {
                 // 如果没有数据没有登录,要重定向到登录到页面(303 302)
                 response.setStatusCode(HttpStatus.SEE_OTHER);
                 // location 指定的就是路径
-                response.getHeaders().set("Location", authProperties.getOauthLogin() + "?From=" + request.getURI().toString());
+                response.getHeaders().set("Location", gatewayProperties.getOauthLogin() + "?From=" + request.getURI().toString());
                 return response.setComplete();
             }
             final boolean hasBearer = token.startsWith("bearer") || token.startsWith("Bearer");
             // 添加头信息
-            request.mutate().header(authProperties.getAuthorizeToken(), hasBearer ? token : "Bearer " + token);
+            request.mutate().header(gatewayProperties.getAuthorizeToken(), hasBearer ? token : "Bearer " + token);
             return chain.filter(exchange);
         } catch (Exception e) {
             e.printStackTrace();

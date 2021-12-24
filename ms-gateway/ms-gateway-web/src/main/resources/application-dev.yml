@@ -47,17 +47,21 @@ spring:
           filters:
             - StripPrefix=1
 
-# 网关认证配置
-gateway-auth:
+# Web网关配置
+ms-gateway:
   # Token 标识
   authorizeToken: Authorization
-  # 放行的请求路径(eg: /api/shopify-plugin/category/list)
+  # Swagger 文档数据URI(※ Swagger3.0 basePath存在问题)
+  swaggerApiDocUri: /v2/api-docs
+  # 放行的请求路径(鉴权)
   excludeUrls:
     - /**/v3/api-docs
+    - /**/v2/api-docs
     - /**/swagger-resources
     - /**/swagger-resources/configuration/**
     - /**/swagger-ui/**
     - /**/doc.html
+    - /**/swagger-ui.html
     - /**/actuator/**
     - /**/instances/**
     - /**/*.js
@@ -70,4 +74,5 @@ gateway-auth:
 # SwaggerUI
 springfox:
   documentation:
+    # API文档是否开启
     enabled: true
